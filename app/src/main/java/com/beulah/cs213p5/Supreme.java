@@ -1,5 +1,7 @@
 package com.beulah.cs213p5;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 
 /**
@@ -74,10 +76,21 @@ public class Supreme extends Pizza{
     public double price() {
         double basePrice = 0;
         switch(this.size.getName()){
-            case("small") -> basePrice = SMALL_PRICE;
-            case("medium") -> basePrice = SMALL_PRICE + 2;
-            case("large") -> basePrice = SMALL_PRICE + 4;
+            case "small":{
+                basePrice = SMALL_PRICE;
+            }
+            case "medium":{
+                basePrice = SMALL_PRICE + 2;
+            }
+            case "large":{
+                basePrice = SMALL_PRICE + 4;
+            }
         }
+//        switch(this.size.getName()){
+//            case("small") -> basePrice = SMALL_PRICE;
+//            case("medium") -> basePrice = SMALL_PRICE + 2;
+//            case("large") -> basePrice = SMALL_PRICE + 4;
+//        }
         if(extraCheese) { basePrice++; }
         if (extraSauce) { basePrice++; }
         return basePrice;
@@ -87,6 +100,7 @@ public class Supreme extends Pizza{
      * Determines the string tokens that comprise the pizza as a string representation
      * @return pizza as a String
      */
+    @NonNull
     @Override
     public String toString() {
         //format

@@ -42,7 +42,7 @@ public enum Topping {
 
     /**
      * Takes string input for a topping and returns it's corresponding enum
-     * @param the input topping in String format.
+     * @param topping input topping in String format.
      * @return the corresponding Topping
      */
     public static Topping fromString(String topping) {

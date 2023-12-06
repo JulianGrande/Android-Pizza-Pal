@@ -17,12 +17,12 @@ public class PizzaMaker {
         ArrayList<Topping> list = new ArrayList<>();
         Pizza pizza = null;
         switch (pizzaType){
-            case ("deluxe") -> pizza = new Deluxe(Size.SMALL, false, false);
-            case ("supreme") -> pizza = new Supreme(Size.SMALL, false, false);
-            case ("seafood") -> pizza = new Seafood(Size.SMALL, false, false);
-            case ("meatzza") -> pizza = new Meatzza(Size.SMALL, false, false);
-            case ("pepperoni") -> pizza = new Pepperoni(Size.SMALL, false, false);
-            case ("byo") -> pizza = new BuildYourOwn(list, Size.SMALL, Sauce.TOMATO, false, false );
+            case ("deluxe"): pizza = new Deluxe(Size.SMALL, false, false);
+            case ("supreme"): pizza = new Supreme(Size.SMALL, false, false);
+            case ("seafood"): pizza = new Seafood(Size.SMALL, false, false);
+            case ("meatzza"): pizza = new Meatzza(Size.SMALL, false, false);
+            case ("pepperoni"): pizza = new Pepperoni(Size.SMALL, false, false);
+            case ("byo"): pizza = new BuildYourOwn(list, Size.SMALL, Sauce.TOMATO, false, false );
         }
         return pizza;
     }

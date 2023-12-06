@@ -1,5 +1,7 @@
 package com.beulah.cs213p5;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 
 /**
@@ -23,10 +25,21 @@ public class BuildYourOwn extends Pizza {
                            //add a listener to gui that requires at least 3 toppings to be selected before allowing you to order a BYO pizza
         double basePrice = 0;
         switch(this.size.getName()){
-            case("small") -> basePrice = SMALL_PRICE;
-            case("medium") -> basePrice = SMALL_PRICE + 2;
-            case("large") -> basePrice = SMALL_PRICE + 4;
+            case "small":{
+                basePrice = SMALL_PRICE;
+            }
+            case "medium":{
+                basePrice = SMALL_PRICE + 2;
+            }
+            case "large":{
+                basePrice = SMALL_PRICE + 4;
+            }
         }
+//        switch(this.size.getName()){
+//            case("small") -> basePrice = SMALL_PRICE;
+//            case("medium") -> basePrice = SMALL_PRICE + 2;
+//            case("large") -> basePrice = SMALL_PRICE + 4;
+//        }
         if(toppings.size() > 3){
             basePrice += (toppings.size() - 3) * 1.49;
         }
@@ -39,6 +52,7 @@ public class BuildYourOwn extends Pizza {
      * Convert the pizza into string format
      * @return a string that holds all info about pizza
      */
+    @NonNull
     @Override
     public String toString() {
         String fString = "[Build Your Own] ";

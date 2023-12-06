@@ -1,11 +1,5 @@
 package com.beulah.cs213p5;
 
-import javafx.scene.control.Alert;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-
-import java.io.File;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 /**
@@ -46,44 +40,44 @@ public class StoreOrder {
      * @return number of the current order
      */
     public int getNextOrderNum(){
-        return this.nextOrderNum;
+        return nextOrderNum;
     }
 
-    public void export(){
-        //export all orders into a txt file here
-
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Save Orders");
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text", "*.txt"));
-
-        File file = fileChooser.showSaveDialog(new Stage());
-
-        if(file != null){
-
-            try{
-                PrintWriter pw = new PrintWriter(file);
-                for(int i = 0; i < orders.size(); i++){
-                    pw.print("Order Number: ");
-                    pw.println(orders.get(i).getOrderNum());
-                    pw.print("Total: $");
-                    pw.println(String.format("%.2f", orders.get(i).getOrderTotal()));
-                    ArrayList<Pizza> pizzas = orders.get(i).getPizzas();
-                    for(int j = 0; j < pizzas.size(); j++){
-                        pw.println(pizzas.get(j).toString());
-                    }
-                    pw.println();
-                }
-                pw.close();
-            }
-            catch (Exception e){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Handling File");
-                alert.setHeaderText("Could Not Save File");
-                alert.setContentText("There Was a Problem Saving Your File, Please Try Again.");
-                alert.showAndWait();
-            }
-
-        }
-    }
+//    public void export(){
+//        //export all orders into a txt file here
+//
+//        FileChooser fileChooser = new FileChooser();
+//        fileChooser.setTitle("Save Orders");
+//        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text", "*.txt"));
+//
+//        File file = fileChooser.showSaveDialog(new Stage());
+//
+//        if(file != null){
+//
+//            try{
+//                PrintWriter pw = new PrintWriter(file);
+//                for(int i = 0; i < orders.size(); i++){
+//                    pw.print("Order Number: ");
+//                    pw.println(orders.get(i).getOrderNum());
+//                    pw.print("Total: $");
+//                    pw.println(String.format("%.2f", orders.get(i).getOrderTotal()));
+//                    ArrayList<Pizza> pizzas = orders.get(i).getPizzas();
+//                    for(int j = 0; j < pizzas.size(); j++){
+//                        pw.println(pizzas.get(j).toString());
+//                    }
+//                    pw.println();
+//                }
+//                pw.close();
+//            }
+//            catch (Exception e){
+//                Alert alert = new Alert(Alert.AlertType.ERROR);
+//                alert.setTitle("Error Handling File");
+//                alert.setHeaderText("Could Not Save File");
+//                alert.setContentText("There Was a Problem Saving Your File, Please Try Again.");
+//                alert.showAndWait();
+//            }
+//
+//        }
+//    }
 
 }

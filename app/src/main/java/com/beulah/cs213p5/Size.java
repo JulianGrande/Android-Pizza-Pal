@@ -29,7 +29,7 @@ public enum Size {
 
     /**
      * Converts string input for pizza size to it's corresponding Size enum
-     * @param topping in String format
+     * @param size in String format
      * @return corresponding Size enum
      */
     public static Size fromString(String size) {
