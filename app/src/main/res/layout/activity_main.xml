@@ -19,7 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/Specialty_Pizza"
+        app:srcCompat="@drawable/specialty_pizza"
         tools:visibility="visible" />
 
     <ImageView
@@ -34,7 +34,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/specialtyButton"
-        app:srcCompat="@drawable/BYO_Pizza" />
+        app:srcCompat="@drawable/byo_pizza" />
 
     <ImageView
         android:id="@+id/yourOrderButton"
@@ -48,7 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/byoButton"
-        app:srcCompat="@drawable/Your_Order" />
+        app:srcCompat="@drawable/your_order_pizza" />
 
     <ImageView
         android:id="@+id/storeOrderButton"
@@ -62,7 +62,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/yourOrderButton"
-        app:srcCompat="@drawable/Store_Order" />
+        app:srcCompat="@drawable/store_order" />
 
     <EditText
         android:id="@+id/mainSpecialtyText"
@@ -123,4 +123,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/storeOrderButton"
         app:layout_constraintTop_toBottomOf="@+id/mainYourOrderText" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
