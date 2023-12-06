@@ -4,4 +4,123 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"/>
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/specialtyButton"
+        android:layout_width="180dp"
+        android:layout_height="153dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="215dp"
+        android:layout_marginBottom="562dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/Specialty_Pizza"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/byoButton"
+        android:layout_width="180dp"
+        android:layout_height="153dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="215dp"
+        android:layout_marginBottom="381dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/specialtyButton"
+        app:srcCompat="@drawable/BYO_Pizza" />
+
+    <ImageView
+        android:id="@+id/yourOrderButton"
+        android:layout_width="182dp"
+        android:layout_height="152dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="213dp"
+        android:layout_marginBottom="202dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/byoButton"
+        app:srcCompat="@drawable/Your_Order" />
+
+    <ImageView
+        android:id="@+id/storeOrderButton"
+        android:layout_width="182dp"
+        android:layout_height="153dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="215dp"
+        android:layout_marginBottom="21dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yourOrderButton"
+        app:srcCompat="@drawable/Store_Order" />
+
+    <EditText
+        android:id="@+id/mainSpecialtyText"
+        android:layout_width="205dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="83dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="130dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Specialty Pizzas"
+        app:layout_constraintBottom_toTopOf="@+id/mainBYOText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/specialtyButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/mainBYOText"
+        android:layout_width="203dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginEnd="7dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Build Your Own"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/byoButton"
+        app:layout_constraintTop_toBottomOf="@+id/mainSpecialtyText" />
+
+    <EditText
+        android:id="@+id/mainYourOrderText"
+        android:layout_width="204dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="119dp"
+        android:layout_marginEnd="5dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Your Order"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/yourOrderButton"
+        app:layout_constraintTop_toBottomOf="@+id/mainBYOText" />
+
+    <EditText
+        android:id="@+id/mainStoreOrderText"
+        android:layout_width="203dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="134dp"
+        android:layout_marginEnd="5dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Store Orders"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/storeOrderButton"
+        app:layout_constraintTop_toBottomOf="@+id/mainYourOrderText" />
+</androidx.constraintlayout.widget.ConstraintLayout>
