@@ -2,17 +2,21 @@ package com.beulah.cs213p5;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+/**
+ * Main Menu Activity that handles logic for navigating the app
+ * @author Julian Grande, Vansh Sharma
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Cashier cashier = Cashier.Cashier();
 
         ImageView specialty = findViewById(R.id.specialtyButton);
@@ -50,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void handleSpecialtyPizza(){
-
+        Intent intent = new Intent(MainActivity.this, SpecialtyPizzaActivity.class);
+        startActivity(intent);
     }
 
     private void handleBYOPizza(){
