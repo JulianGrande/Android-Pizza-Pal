@@ -3,67 +3,91 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_centerVertical="true"
+    tools:layout_centerVertical="true">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="133dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="139dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="139dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/add_to_order_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="409dp"
-        android:layout_height="665dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="411dp"
+            android:layout_height="664dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="1dp">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/byoLogo"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:src="@tools:sample/avatars"
-                app:srcCompat="@drawable/byo_pizza" />
+                <ImageView
+                    android:id="@+id/byoLogo"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_margin="8dp"
+                    android:src="@tools:sample/avatars"
+                    app:srcCompat="@drawable/byo_pizza" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="191dp"
-                android:layout_height="84dp"
-                android:text="@string/byo_title" />
-        </TableRow>
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+                </RadioGroup>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="221dp">
+                    <EditText
+                        android:id="@+id/editTextText2"
+                        android:layout_width="227dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:fontFamily="serif-monospace"
+                        android:inputType="text"
+                        android:text="@string/byo_title"
+                        android:textSize="24sp" />
 
-        </TableRow>
-    </TableLayout>
+                    <Spinner
+                        android:id="@+id/spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="221dp">
+
+            </TableRow>
+        </TableLayout>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="133dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="139dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="139dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/add_to_order_button" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

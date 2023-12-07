@@ -2,4 +2,9 @@
     <string name="app_name">cs213P5</string>
     <string name="add_to_order_button">Add To Order</string>
     <string name="byo_title">Build Your Own</string>
+    <string-array name="pizza_sizes">
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
+    </string-array>
 </resources>
