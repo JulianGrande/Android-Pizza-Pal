@@ -7,4 +7,15 @@
         <item>Medium</item>
         <item>Large</item>
     </string-array>
+    <string name="menu_specialty">Specialty Pizzas</string>
+    <string name="menu_byo">Build Your Own</string>
+    <string name="menu_order">Your Orders</string>
+    <string name="menu_store">Store Orders</string>
+    <string name="size_main">Sizes</string>
+    <string name="size_small">Small</string>
+    <string name="size_medium">Medium</string>
+    <string name="size_large">Large</string>
+    <string name="extras_main">Extras</string>
+    <string name="extras_sauce">Extra Sauce</string>
+    <string name="extras_cheese">Extra Cheese</string>
 </resources>

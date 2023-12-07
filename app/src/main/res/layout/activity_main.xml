@@ -64,7 +64,7 @@
         android:layout_marginTop="48dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Specialty Pizzas"
+        android:text="@string/menu_specialty"
         app:layout_constraintStart_toEndOf="@+id/specialtyButton"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -76,7 +76,7 @@
         android:layout_marginTop="114dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Build Your Own"
+        android:text="@string/menu_byo"
         app:layout_constraintStart_toEndOf="@+id/byoButton"
         app:layout_constraintTop_toBottomOf="@+id/mainSpecialtyText" />
 
@@ -88,7 +88,7 @@
         android:layout_marginTop="126dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Your Order"
+        android:text="@string/menu_order"
         app:layout_constraintStart_toEndOf="@+id/yourOrderButton"
         app:layout_constraintTop_toBottomOf="@+id/mainBYOText" />
 
@@ -100,7 +100,7 @@
         android:layout_marginTop="116dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Store Orders"
+        android:text="@string/menu_store"
         app:layout_constraintStart_toEndOf="@+id/storeOrderButton"
         app:layout_constraintTop_toBottomOf="@+id/mainYourOrderText" />
 

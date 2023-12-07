@@ -2,6 +2,8 @@ package com.beulah.cs213p5;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,6 +12,7 @@ public class SpecialtyPizzaActivity extends AppCompatActivity {
     private RecyclerView recycler;
     private Pizza pizza;
     private PizzaMaker pizzaMaker;
+    private ImageView specialtyPicture;
 
     //Speciality pizza stuff here
     @Override
