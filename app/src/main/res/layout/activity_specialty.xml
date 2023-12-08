@@ -18,22 +18,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
-        android:id="@+id/specialtyPicture"
-        android:layout_width="184dp"
-        android:layout_height="155dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginBottom="550dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/recycler"
-        app:layout_constraintHorizontal_bias="0.243"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/specialty_pizza" />
-
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="202dp"
@@ -68,7 +52,6 @@
         android:layout_width="148dp"
         android:layout_height="48dp"
         android:layout_marginStart="18dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="87dp"
         android:ems="10"
         android:inputType="text"
@@ -76,8 +59,7 @@
         app:layout_constraintBottom_toTopOf="@+id/radioGroup"
         app:layout_constraintEnd_toStartOf="@+id/recycler"
         app:layout_constraintHorizontal_bias="0.04"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/specialtyPicture" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/extrasText"
@@ -119,5 +101,12 @@
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/pizza_price"
+        android:layout_width="105dp"
+        android:layout_height="24dp"
+        tools:layout_editor_absoluteX="18dp"
+        tools:layout_editor_absoluteY="461dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

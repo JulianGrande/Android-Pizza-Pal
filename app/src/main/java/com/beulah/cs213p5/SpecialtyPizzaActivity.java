@@ -26,7 +26,7 @@ public class SpecialtyPizzaActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Cashier cashier = Cashier.Cashier();
         recycler = findViewById(R.id.recycler);
-        //setUpMenuNames
+        setUpMenuItems();
         //adapter
         //linear layout
     }
@@ -42,11 +42,14 @@ public class SpecialtyPizzaActivity extends AppCompatActivity {
     }
 
     private void setUpMenuItems(){
+        PizzaMaker pizzaMaker = new PizzaMaker();
+        Pizza pizza;
 
         String [] pizzaNames = getResources().getStringArray(R.array.specialty_pizzas);
         //pizza maker make pizza, pizza.price, add all the other pizzas as classes and to pizza maker
         for(int i = 0; i < pizzaNames.length; i++){
-
+            pizza = pizzaMaker.createPizza(pizzaNames[i]);
+            pizzas.add(new Items(pizzaNames[i], images[i], pizza.price()));
         }
 
     }

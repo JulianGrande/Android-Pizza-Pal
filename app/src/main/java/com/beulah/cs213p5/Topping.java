@@ -19,7 +19,10 @@ public enum Topping {
     CRAB_MEATS("crab meats"),
     BACON("bacon"),
     SPINACH("spinach"),
-    BUFFALO_CHICKEN("buffalo chicken");
+    BUFFALO_CHICKEN("buffalo chicken"),
+    BASIL("basil"),
+    PARMESAN_CHEESE("parmesan cheese"),
+    PINEAPPLE("pineapple");
 
 
     private final String topping;
