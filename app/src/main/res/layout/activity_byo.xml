@@ -10,72 +10,57 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
-        <TableLayout
-            android:id="@+id/tableLayout"
-            android:layout_width="411dp"
-            android:layout_height="664dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginBottom="1dp">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="153dp">
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/byoLogo"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_margin="8dp"
+                app:srcCompat="@drawable/byo_pizza" />
 
-                <ImageView
-                    android:id="@+id/byoLogo"
-                    android:layout_width="110dp"
-                    android:layout_height="110dp"
-                    android:layout_margin="8dp"
-                    app:srcCompat="@drawable/byo_pizza" />
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-                <RadioGroup
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+            </RadioGroup>
 
-                </RadioGroup>
+            <LinearLayout
+                android:layout_width="284dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="226dp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                <EditText
+                    android:id="@+id/editTextText2"
+                    android:layout_width="227dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:fontFamily="serif-monospace"
+                    android:inputType="text"
+                    android:text="@string/byo_title"
+                    android:textSize="24sp" />
 
-                    <EditText
-                        android:id="@+id/editTextText2"
-                        android:layout_width="227dp"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:fontFamily="serif-monospace"
-                        android:inputType="text"
-                        android:text="@string/byo_title"
-                        android:textSize="24sp" />
+                <Spinner
+                    android:id="@+id/sizeSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:entries="@array/pizza_sizes" />
 
-                    <Spinner
-                        android:id="@+id/spinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp" />
+                <Spinner
+                    android:id="@+id/toppingSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:entries="@array/all_toppings" />
 
-                </LinearLayout>
+            </LinearLayout>
 
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="221dp">
-
-            </TableRow>
-        </TableLayout>
+        </TableRow>
 
         <Button
             android:id="@+id/button"

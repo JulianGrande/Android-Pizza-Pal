@@ -7,6 +7,21 @@
         <item>Medium</item>
         <item>Large</item>
     </string-array>
+    <string-array name="all_toppings">
+        <item>Topping 1</item>
+        <item>Topping 2</item>
+        <item>Topping 3</item>
+        <item>Topping 4</item>
+        <item>Topping 5</item>
+        <item>Topping 6</item>
+        <item>Topping 7</item>
+        <item>Topping 8</item>
+        <item>Topping 9</item>
+        <item>Topping 10</item>
+        <item>Topping 11</item>
+        <item>Topping 12</item>
+        <item>Topping 13</item>
+    </string-array>
     <string name="menu_specialty">Specialty Pizzas</string>
     <string name="menu_byo">Build Your Own</string>
     <string name="menu_order">Your Orders</string>
