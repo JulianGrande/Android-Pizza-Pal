@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * Main Menu Activity that handles logic for navigating the app
@@ -51,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
                 handleStoreOrders();
             }
         });
+        TextView mainSP = findViewById(R.id.mainSpecialtyText); mainSP.setKeyListener(null);
+        TextView mainBYO = findViewById(R.id.mainBYOText); mainBYO.setKeyListener(null);
+        TextView mainYO = findViewById(R.id.mainYourOrderText); mainYO.setKeyListener(null);
+        TextView mainSO = findViewById(R.id.mainStoreOrderText); mainSO.setKeyListener(null);
     }
 
     @Override
