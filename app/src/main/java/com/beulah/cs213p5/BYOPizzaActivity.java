@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +21,13 @@ public class BYOPizzaActivity extends AppCompatActivity {
     private ArrayAdapter<String> toppingsAdapter;
     private ArrayAdapter<String> userToppingsAdapter;
 
+    private String pizzaSize;
+    private String pizzaSauce;
     private String selectedTopping;
+
+    private Pizza pizza;
+    private Cashier cashier;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,25 +35,82 @@ public class BYOPizzaActivity extends AppCompatActivity {
 
         // Initialize ListView and ArrayAdapter for toppings
         toppingsListView = findViewById(R.id.toppingsView);
-        ArrayList<String> allToppings = new ArrayList<>();
-        addToppings(allToppings);
-        toppingsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, allToppings);
-        toppingsListView.setAdapter(toppingsAdapter);
-        toppingsListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE); // Enable single choice mode
-
+        initializeToppingsListView();
         // Initialize ListView and ArrayAdapter for user selected toppings
         userToppingsListView = findViewById(R.id.userToppingsView);
-        ArrayList<String> userSelectedToppings = new ArrayList<>();
-        userSelectedToppings.add("None Selected");
-        userToppingsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, userSelectedToppings);
-        userToppingsListView.setAdapter(userToppingsAdapter);
-        userToppingsListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE); // Enable single choice mode
+        initializeUserToppingsListView();
 
         setUpAddButton();
         setUpRemoveButton();
         setUpToppingsClickListener();
         setUpUserToppingsClickListener();
+        setUpAddToOrderButton();
+        setUpSauceSpinner();
+        setUpSizeSpinner();
 
+        PizzaMaker pizzaMaker = new PizzaMaker();
+        pizza = pizzaMaker.createPizza("byo");
+        cashier = Cashier.Cashier();
+    }
+
+
+
+    /**
+     * INITIALIZERS
+     * LISTENERS
+     * HANDLERS
+     */
+
+
+    private void setUpSizeSpinner(){
+        Spinner sizeSpinner = findViewById(R.id.sizeSpinner); // Replace with your Spinner's ID
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.pizza_sizes,
+                android.R.layout.simple_spinner_item
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sizeSpinner.setAdapter(adapter);
+        pizza.setSize(Size.fromString(pizzaSize));
+
+        // LISTENER
+        sizeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // Update the private variable pizzaSize based on the selected item
+                pizzaSize = parentView.getItemAtPosition(position).toString();
+                pizza.setSize(Size.fromString(pizzaSize));
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Do nothing when nothing is selected
+            }
+        });
+    }
+
+    private void setUpSauceSpinner(){
+        Spinner sauceSpinner = findViewById(R.id.sauceSpinner); // Replace with your Spinner's ID
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.sauce_selection,
+                android.R.layout.simple_spinner_item
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sauceSpinner.setAdapter(adapter);
+
+        // Set the item selected listener for the spinner
+        sauceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // Update the private variable pizzaSize based on the selected item
+                pizzaSize = parentView.getItemAtPosition(position).toString();
+                // You can do further actions based on the selected item if needed
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Do nothing when nothing is selected
+            }
+        });
     }
 
     private void setUpAddButton() {
@@ -69,6 +133,18 @@ public class BYOPizzaActivity extends AppCompatActivity {
                 if (canRemoveTopping()){
                     onRemoveButtonClicked();
                 }
+            }
+        });
+    }
+
+    private void setUpAddToOrderButton() {
+        Button addToOrderButton = findViewById(R.id.addToOrderButton);
+        addToOrderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // ADDITIONAL CODE
+
+                resetView();
             }
         });
     }
@@ -111,25 +187,32 @@ public class BYOPizzaActivity extends AppCompatActivity {
         }
     }
 
-
-
-
-    private void addToppings(ArrayList<String> allToppings){
-        allToppings.add("Sausage");
-        allToppings.add("Pepperoni");
-        allToppings.add("Green Pepper");
-        allToppings.add("Onion");
-        allToppings.add("Mushroom");
-        allToppings.add("Ham");
-        allToppings.add("Bacon");
-        allToppings.add("Black Olive");
-        allToppings.add("Beef");
-        allToppings.add("Spinach");
-        allToppings.add("Shrimp");
-        allToppings.add("Squid");
-        allToppings.add("Crab Meat");
-        allToppings.add("Buffalo Chicken");
+    private void initializeToppingsListView(){
+        ArrayList<String> allToppings = new ArrayList<>();
+        addToppings(allToppings);
+        toppingsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, allToppings);
+        toppingsListView.setAdapter(toppingsAdapter);
+        toppingsListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE); // Enable single choice mode
     }
+
+    private void initializeUserToppingsListView(){
+        ArrayList<String> userSelectedToppings = new ArrayList<>();
+        userSelectedToppings.add("None Selected");
+        userToppingsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, userSelectedToppings);
+        userToppingsListView.setAdapter(userToppingsAdapter);
+        userToppingsListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE); // Enable single choice mode
+    }
+
+
+
+
+
+
+    /**
+     * HELPER FUNCTIONS
+     * PUBLIC METHODS
+     * OTHER METHODS
+     */
 
     private void resetAdapters(){
         if(!userToppingsAdapter.isEmpty()){
@@ -158,5 +241,43 @@ public class BYOPizzaActivity extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+    private ArrayList<Topping> convertToppingToArrayList() {
+        ArrayList<Topping> returnList = new ArrayList<>();
+
+        for (int i = 0; i < userToppingsAdapter.getCount(); i++) {
+            String topping = userToppingsAdapter.getItem(i);
+
+            if (topping != null) {
+                Topping toppingEnum = Topping.fromString(topping);
+                returnList.add(toppingEnum);
+            }
+        }
+
+        return returnList;
+    }
+
+    private void addToppings(ArrayList<String> allToppings){
+        allToppings.add("Sausage");
+        allToppings.add("Pepperoni");
+        allToppings.add("Green Pepper");
+        allToppings.add("Onion");
+        allToppings.add("Mushroom");
+        allToppings.add("Ham");
+        allToppings.add("Bacon");
+        allToppings.add("Black Olive");
+        allToppings.add("Beef");
+        allToppings.add("Spinach");
+        allToppings.add("Shrimp");
+        allToppings.add("Squid");
+        allToppings.add("Crab Meat");
+        allToppings.add("Buffalo Chicken");
+    }
+
+    private void resetView(){
+        initializeToppingsListView();
+        initializeUserToppingsListView();
+
     }
 }

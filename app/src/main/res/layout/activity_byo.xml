@@ -51,14 +51,12 @@
                 <Spinner
                     android:id="@+id/sizeSpinner"
                     android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:entries="@array/pizza_sizes" />
+                    android:layout_height="52dp" />
 
                 <Spinner
-                    android:id="@+id/toppingSpinner"
+                    android:id="@+id/sauceSpinner"
                     android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:entries="@array/sauce_selection" />
+                    android:layout_height="52dp" />
 
             </LinearLayout>
 
@@ -141,7 +139,7 @@
                 android:layout_marginBottom="5dp" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/addToOrderButton"
                 android:layout_width="140dp"
                 android:layout_height="48dp"
                 android:layout_margin="10dp"
