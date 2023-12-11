@@ -19,6 +19,7 @@ public class SpecialtyPizzaActivity extends AppCompatActivity {
                                 R.drawable.rutgers_special};
 
     //Speciality pizza stuff here
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

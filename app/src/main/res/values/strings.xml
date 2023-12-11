@@ -2,25 +2,16 @@
     <string name="app_name">cs213P5</string>
     <string name="add_to_order_button">Add To Order</string>
     <string name="byo_title">Build Your Own</string>
+    <string name="add_button">Add &gt;&gt;</string>
+    <string name="remove_button">&lt;&lt; remove</string>
     <string-array name="pizza_sizes">
         <item>Small</item>
         <item>Medium</item>
         <item>Large</item>
     </string-array>
-    <string-array name="all_toppings">
-        <item>Topping 1</item>
-        <item>Topping 2</item>
-        <item>Topping 3</item>
-        <item>Topping 4</item>
-        <item>Topping 5</item>
-        <item>Topping 6</item>
-        <item>Topping 7</item>
-        <item>Topping 8</item>
-        <item>Topping 9</item>
-        <item>Topping 10</item>
-        <item>Topping 11</item>
-        <item>Topping 12</item>
-        <item>Topping 13</item>
+    <string-array name="sauce_selection">
+        <item>Tomato</item>
+        <item>Alfredo</item>
     </string-array>
     <string name="menu_specialty">Specialty Pizzas</string>
     <string name="menu_byo">Build Your Own</string>

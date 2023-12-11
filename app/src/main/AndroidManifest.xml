@@ -24,6 +24,9 @@
         <activity android:name=".SpecialtyPizzaActivity"
             android:exported="false">
         </activity>
+        <activity android:name=".BYOPizzaActivity"
+            android:exported="false">
+        </activity>
     </application>
 
 </manifest>

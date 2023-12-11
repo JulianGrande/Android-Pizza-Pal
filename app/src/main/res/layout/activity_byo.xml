@@ -2,17 +2,18 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_centerVertical="true"
     tools:layout_centerVertical="true">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="392dp"
+        android:layout_height="781dp"
+        android:layout_marginBottom="5dp"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp">
 
         <TableRow
             android:layout_width="match_parent"
@@ -20,8 +21,8 @@
 
             <ImageView
                 android:id="@+id/byoLogo"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
+                android:layout_width="130dp"
+                android:layout_height="125dp"
                 android:layout_margin="8dp"
                 app:srcCompat="@drawable/byo_pizza" />
 
@@ -32,13 +33,13 @@
             </RadioGroup>
 
             <LinearLayout
-                android:layout_width="284dp"
+                android:layout_width="266dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <EditText
                     android:id="@+id/editTextText2"
-                    android:layout_width="227dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:fontFamily="serif-monospace"
@@ -48,15 +49,61 @@
 
                 <Spinner
                     android:id="@+id/sizeSpinner"
-                    android:layout_width="match_parent"
+                    android:layout_width="267dp"
                     android:layout_height="52dp"
                     android:entries="@array/pizza_sizes" />
 
                 <Spinner
                     android:id="@+id/toppingSpinner"
-                    android:layout_width="match_parent"
+                    android:layout_width="267dp"
                     android:layout_height="52dp"
-                    android:entries="@array/all_toppings" />
+                    android:entries="@array/sauce_selection" />
+
+            </LinearLayout>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="510dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ListView
+                    android:id="@+id/toppingsView"
+                    android:layout_width="129dp"
+                    android:layout_height="match_parent"
+                    android:entries="@array/specialty_pizzas" />
+
+                <LinearLayout
+                    android:layout_width="135dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/addToppings"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_margin="10dp"
+                        android:text="@string/add_button"
+                        android:translationY="125dp" />
+
+                    <Button
+                        android:id="@+id/removeToppings"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_margin="10dp"
+                        android:text="@string/remove_button"
+                        android:translationY="175dp" />
+                </LinearLayout>
+
+                <ListView
+                    android:id="@+id/userToppingsView"
+                    android:layout_width="129dp"
+                    android:layout_height="match_parent" />
 
             </LinearLayout>
 
@@ -64,12 +111,9 @@
 
         <Button
             android:id="@+id/button"
-            android:layout_width="133dp"
+            android:layout_width="140dp"
             android:layout_height="48dp"
-            android:layout_marginStart="139dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="139dp"
-            android:layout_marginBottom="16dp"
+            android:layout_margin="10dp"
             android:text="@string/add_to_order_button" />
 
     </LinearLayout>

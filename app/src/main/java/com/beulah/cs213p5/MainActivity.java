@@ -69,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void handleBYOPizza(){
+        Intent intent = new Intent(MainActivity.this, BYOPizzaActivity.class);
+        startActivity(intent);
 
     }
 
