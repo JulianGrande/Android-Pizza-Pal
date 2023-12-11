@@ -1,11 +1,15 @@
 package com.beulah.cs213p5;// BYOPizzaActivity.java
 
+import android.app.Activity;
+import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
@@ -33,9 +37,15 @@ public class BYOPizzaActivity extends AppCompatActivity {
         // Initialize ListView and ArrayAdapter for user selected toppings
         userToppingsListView = findViewById(R.id.userToppingsView);
         ArrayList<String> userSelectedToppings = new ArrayList<>();
+        userSelectedToppings.add("None Selected");
         userToppingsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, userSelectedToppings);
         userToppingsListView.setAdapter(userToppingsAdapter);
         userToppingsListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE); // Enable single choice mode
+
+        setUpAddButton();
+        setUpRemoveButton();
+        setUpToppingsClickListener();
+        setUpUserToppingsClickListener();
 
     }
 
@@ -44,7 +54,9 @@ public class BYOPizzaActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onAddButtonClicked();
+                if(canAddTopping()){
+                    onAddButtonClicked();
+                }
             }
         });
     }
@@ -54,66 +66,48 @@ public class BYOPizzaActivity extends AppCompatActivity {
         removeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onRemoveButtonClicked();
+                if (canRemoveTopping()){
+                    onRemoveButtonClicked();
+                }
             }
         });
     }
 
     private void setUpToppingsClickListener() {
-        toppingsListView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        toppingsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                onToppingsListItemClicked(position);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // Add logic if needed when nothing is selected
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedTopping = toppingsAdapter.getItem(position);
             }
         });
     }
 
     private void setUpUserToppingsClickListener() {
-        userToppingsListView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        userToppingsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                onUserToppingsListItemClicked(position);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // Add logic if needed when nothing is selected
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedTopping = userToppingsAdapter.getItem(position);
             }
         });
     }
 
-    private void onToppingsListItemClicked(int position) {
-        // Add logic to handle item click in toppingsListView
-        selectedTopping = toppingsAdapter.getItem(position);
-        // Add your logic here
-    }
-
-    private void onUserToppingsListItemClicked(int position) {
-        // Add logic to handle item click in userToppingsListView
-        selectedTopping = userToppingsAdapter.getItem(position);
-        // Add your logic here
-    }
-
     private void onAddButtonClicked() {
         // Add logic to move selected topping from toppingsView to userToppingsView
-        String selectedTopping = (String) toppingsListView.getItemAtPosition(toppingsListView.getSelectedItemPosition());
+//        String selectedTopping = (String) toppingsListView.getItemAtPosition(toppingsListView.getSelectedItemPosition());
         if (selectedTopping != null) {
             toppingsAdapter.remove(selectedTopping);
             userToppingsAdapter.add(selectedTopping);
+            resetAdapters();
         }
     }
 
     private void onRemoveButtonClicked() {
         // Add logic to move selected topping from userToppingsView to toppingsView
-        String selectedTopping = (String) userToppingsListView.getItemAtPosition(userToppingsListView.getSelectedItemPosition());
+//        String selectedTopping = (String) userToppingsListView.getItemAtPosition(userToppingsListView.getSelectedItemPosition());
         if (selectedTopping != null) {
             userToppingsAdapter.remove(selectedTopping);
             toppingsAdapter.add(selectedTopping);
+            resetAdapters();
         }
     }
 
@@ -135,5 +129,34 @@ public class BYOPizzaActivity extends AppCompatActivity {
         allToppings.add("Squid");
         allToppings.add("Crab Meat");
         allToppings.add("Buffalo Chicken");
+    }
+
+    private void resetAdapters(){
+        if(!userToppingsAdapter.isEmpty()){
+            userToppingsAdapter.remove("None Selected");
+        } else { userToppingsAdapter.add("None Selected"); }
+        toppingsListView.setAdapter(toppingsAdapter);
+        userToppingsListView.setAdapter(userToppingsAdapter);
+        selectedTopping = null;
+    }
+
+    private boolean canAddTopping(){
+        if (userToppingsAdapter.getCount() == 7){
+            Toast.makeText(BYOPizzaActivity.this,
+                    "You can add a maximum of 7 toppings.",
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean canRemoveTopping(){
+        if (userToppingsAdapter.getCount() <= 3){
+            Toast.makeText(BYOPizzaActivity.this,
+                    "At least 3 toppings are required.",
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 }
