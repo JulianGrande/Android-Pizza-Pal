@@ -15,6 +15,8 @@ public class BYOPizzaActivity extends AppCompatActivity {
     private ListView userToppingsListView;
     private ArrayAdapter<String> toppingsAdapter;
     private ArrayAdapter<String> userToppingsAdapter;
+
+    private String selectedTopping;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,23 +59,45 @@ public class BYOPizzaActivity extends AppCompatActivity {
         });
     }
 
-//    private void setUpToppingsClickListener() {
-//        toppingsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                handleToppingsListItemClicked();
-//            }
-//        });
-//    }
-//
-//    private void setUpUserToppingsClickListener() {
-//        userToppingsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                handleUserToppingsListItemClicked();
-//            }
-//        });
-//    }
+    private void setUpToppingsClickListener() {
+        toppingsListView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                onToppingsListItemClicked(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Add logic if needed when nothing is selected
+            }
+        });
+    }
+
+    private void setUpUserToppingsClickListener() {
+        userToppingsListView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                onUserToppingsListItemClicked(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Add logic if needed when nothing is selected
+            }
+        });
+    }
+
+    private void onToppingsListItemClicked(int position) {
+        // Add logic to handle item click in toppingsListView
+        selectedTopping = toppingsAdapter.getItem(position);
+        // Add your logic here
+    }
+
+    private void onUserToppingsListItemClicked(int position) {
+        // Add logic to handle item click in userToppingsListView
+        selectedTopping = userToppingsAdapter.getItem(position);
+        // Add your logic here
+    }
 
     private void onAddButtonClicked() {
         // Add logic to move selected topping from toppingsView to userToppingsView

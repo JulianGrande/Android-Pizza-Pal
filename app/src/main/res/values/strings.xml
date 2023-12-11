@@ -13,6 +13,8 @@
         <item>Tomato</item>
         <item>Alfredo</item>
     </string-array>
+    <string name="price_str">Price: $</string>
+    <string name="topping_heading"><b>Choose Toppings (min: 3, max: 7)</b></string>
     <string name="menu_specialty">Specialty Pizzas</string>
     <string name="menu_byo">Build Your Own</string>
     <string name="menu_order">Your Orders</string>
