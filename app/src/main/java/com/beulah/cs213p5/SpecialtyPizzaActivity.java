@@ -42,8 +42,6 @@ public class SpecialtyPizzaActivity extends AppCompatActivity {
         ItemsAdapter adapter = new ItemsAdapter(this, pizzas);
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new LinearLayoutManager(this));
-        //adapter
-        //linear layout
     }
 
     /**

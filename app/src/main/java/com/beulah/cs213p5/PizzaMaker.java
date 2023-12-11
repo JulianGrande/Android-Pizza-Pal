@@ -23,6 +23,11 @@ public class PizzaMaker {
             case ("meatzza"): pizza = new Meatzza(Size.SMALL, false, false);
             case ("pepperoni"): pizza = new Pepperoni(Size.SMALL, false, false);
             case ("byo"): pizza = new BuildYourOwn(list, Size.SMALL, Sauce.TOMATO, false, false );
+            case ("buffalo chicken"): pizza = new BuffaloChicken(Size.SMALL, false, false);
+            case ("margharita"): pizza = new Margharita(Size.SMALL, false, false);
+            case ("veggie"): pizza = new Veggie(Size.SMALL, false, false);
+            case ("hawaiian"): pizza = new Hawaiian(Size.SMALL, false, false);
+            case ("rutgers special"): pizza = new RutgersSpecial(Size.SMALL, false, false);
         }
         return pizza;
     }

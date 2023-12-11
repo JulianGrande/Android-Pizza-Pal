@@ -55,11 +55,11 @@
         android:ems="10"
         android:inputType="text"
         android:text="@string/size_main"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroup2"
+        app:layout_constraintBottom_toTopOf="@+id/sizeGroup"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <RadioGroup
-        android:id="@+id/radioGroup2"
+        android:id="@+id/sizeGroup"
         android:layout_width="138dp"
         android:layout_height="151dp"
         android:layout_marginEnd="14dp"

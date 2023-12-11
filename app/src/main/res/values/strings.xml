@@ -25,15 +25,15 @@
     <string name="extras_sauce">Extra Sauce</string>
     <string name="extras_cheese">Extra Cheese</string>
     <string-array name="specialty_pizzas">
-        <item>Deluxe</item>
-        <item>Meatzza</item>
-        <item>Pepperoni</item>
-        <item>Seafood</item>
-        <item>Supreme</item>
-        <item>Buffalo Chicken</item>
-        <item>Margharita</item>
-        <item>Veggie</item>
-        <item>Hawaiian</item>
-        <item>Rutgers Special</item>
+        <item>deluxe</item>
+        <item>meatzza</item>
+        <item>pepperoni</item>
+        <item>seafood</item>
+        <item>supreme</item>
+        <item>buffalo chicken</item>
+        <item>margharita</item>
+        <item>veggie</item>
+        <item>hawaiian</item>
+        <item>rutgers special</item>
     </string-array>
 </resources>

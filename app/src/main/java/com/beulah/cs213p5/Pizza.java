@@ -59,4 +59,6 @@ public abstract class Pizza {
      */
     public abstract void setExtraCheese(boolean cheese);
 
+    public abstract ArrayList<Topping> getToppings();
+
 }

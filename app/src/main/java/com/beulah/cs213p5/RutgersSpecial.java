@@ -62,6 +62,14 @@ public class RutgersSpecial extends Pizza{
     }
 
     /**
+     * Getter method for the toppings of the pizza
+     * @return list of toppings of the pizza
+     */
+    public ArrayList<Topping> getToppings(){
+        return this.toppings;
+    }
+
+    /**
      * Calculates the price of the pizza
      * @return price of pizza as a double
      */
