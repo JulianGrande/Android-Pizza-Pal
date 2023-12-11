@@ -28,6 +28,7 @@ public class BYOPizzaActivity extends AppCompatActivity {
     private Pizza pizza;
     private Cashier cashier;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +72,7 @@ public class BYOPizzaActivity extends AppCompatActivity {
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sizeSpinner.setAdapter(adapter);
+        pizzaSize = "Small";
         pizza.setSize(Size.fromString(pizzaSize));
 
         // LISTENER
@@ -97,6 +99,9 @@ public class BYOPizzaActivity extends AppCompatActivity {
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sauceSpinner.setAdapter(adapter);
+        BuildYourOwn byoPizza = (BuildYourOwn) pizza;
+        byoPizza.setSauce(Sauce.fromString(pizzaSauce));
+
 
         // Set the item selected listener for the spinner
         sauceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -254,7 +259,6 @@ public class BYOPizzaActivity extends AppCompatActivity {
                 returnList.add(toppingEnum);
             }
         }
-
         return returnList;
     }
 
