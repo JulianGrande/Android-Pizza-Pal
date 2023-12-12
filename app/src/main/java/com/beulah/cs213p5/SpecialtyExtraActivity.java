@@ -90,6 +90,7 @@ public class SpecialtyExtraActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Pizza Added To Order!", Toast.LENGTH_SHORT).show();
             }
         });
+        populateListViewToppings();
     }
 
 
@@ -126,7 +127,6 @@ public class SpecialtyExtraActivity extends AppCompatActivity {
         addToOrder = findViewById(R.id.specialtyExtraATO);
         price = findViewById(R.id.specialtyExtraPrice);
         sizeGroup = findViewById(R.id.sizeGroup);
-        populateListViewToppings();
     }
 
     /**
