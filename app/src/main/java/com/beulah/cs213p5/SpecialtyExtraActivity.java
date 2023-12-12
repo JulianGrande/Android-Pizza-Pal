@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -26,8 +27,8 @@ public class SpecialtyExtraActivity extends AppCompatActivity {
     private ImageView pizzaPic;
     private ListView toppings;
     private TextView title;
-    private RadioButton extraSauce;
-    private RadioButton extraCheese;
+    private CheckBox extraCheesebox;
+    private CheckBox extraSauceBox;
     private RadioButton small;
     private RadioButton medium;
     private RadioButton large;
@@ -54,17 +55,17 @@ public class SpecialtyExtraActivity extends AppCompatActivity {
         setAllFields();
         intent = getIntent();
         setResourcesForFields();
-        extraSauce.setOnClickListener(new View.OnClickListener() {
+        extraSauceBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pizza.setExtraSauce(extraSauce.isActivated());
+                pizza.setExtraSauce(extraSauceBox.isActivated());
                 price.setText(String.format("%.2f", pizza.price()));
             }
         });
-        extraCheese.setOnClickListener(new View.OnClickListener() {
+        extraCheesebox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pizza.setExtraCheese(extraCheese.isActivated());
+                pizza.setExtraCheese(extraCheesebox.isActivated());
                 price.setText(String.format("%.2f", pizza.price()));
             }
         });
@@ -119,8 +120,8 @@ public class SpecialtyExtraActivity extends AppCompatActivity {
         pizzaPic = findViewById(R.id.specialtyExtraPic);
         toppings = findViewById(R.id.specialtyExtraLV);
         title = findViewById(R.id.specialtyExtraTitle);
-        extraSauce = findViewById(R.id.specialtyExtraSauce);
-        extraCheese = findViewById(R.id.specialtyExtraCheese);
+        extraSauceBox = findViewById(R.id.extraSauceBox);
+        extraCheesebox = findViewById(R.id.extraCheeseBox);
         small = findViewById(R.id.specialtyExtraSmall);
         medium = findViewById(R.id.specialtyExtraMedium);
         large = findViewById(R.id.specialtyExtraLarge);

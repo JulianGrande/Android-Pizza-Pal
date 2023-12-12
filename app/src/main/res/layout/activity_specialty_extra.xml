@@ -96,26 +96,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <RadioButton
-        android:id="@+id/specialtyExtraSauce"
-        android:layout_width="157dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="35dp"
-        android:text="@string/extras_sauce"
-        app:layout_constraintBottom_toTopOf="@+id/editTextText4"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <RadioButton
-        android:id="@+id/specialtyExtraCheese"
-        android:layout_width="156dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="11dp"
-        android:text="@string/extras_cheese"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sizeText" />
-
     <TextView
         android:id="@+id/specialtyExtraPrice"
         android:layout_width="183dp"
@@ -124,5 +104,25 @@
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/specialtyExtraTitle" />
+
+    <CheckBox
+        android:id="@+id/extraCheeseBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="49dp"
+        android:text="@string/extra_cheese"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sizeText" />
+
+    <CheckBox
+        android:id="@+id/extraSauceBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="56dp"
+        android:text="@string/extra_sauce"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/extraCheeseBox" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
