@@ -1,12 +1,12 @@
 package com.beulah.cs213p5;// BYOPizzaActivity.java
 
-import android.annotation.SuppressLint;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -33,8 +33,17 @@ public class BYOPizzaActivity extends AppCompatActivity {
     private Pizza pizza;
     private Cashier cashier;
 
+    private CheckBox extraCheese;
+    private CheckBox extraSauce;
     private TextView totalPrice;
 
+    /**
+     * First time creation handler for page.
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,15 +73,9 @@ public class BYOPizzaActivity extends AppCompatActivity {
         updatePrice();
     }
 
-
-
     /**
-     * INITIALIZERS
-     * LISTENERS
-     * HANDLERS
+     * Initialize the size spinner.
      */
-
-
     private void setUpSizeSpinner(){
         Spinner sizeSpinner = findViewById(R.id.sizeSpinner); // Replace with your Spinner's ID
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
@@ -102,6 +105,9 @@ public class BYOPizzaActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     *  Initialize the Sauce Spinner.
+     */
     private void setUpSauceSpinner(){
         Spinner sauceSpinner = findViewById(R.id.sauceSpinner); // Replace with your Spinner's ID
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
@@ -130,25 +136,41 @@ public class BYOPizzaActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Initialize the extra cheese checkbox.
+     */
     private void setUpExtraCheeseSwitch() {
-        @SuppressLint("UseSwitchCompatOrMaterialCode") Switch extraCheeseSwitch = findViewById(R.id.extraSauce); // Replace with your extraCheese radio button's ID
+        extraCheese = findViewById(R.id.extraCheese); // Replace with your extraCheese radio button's ID
 
-        extraCheeseSwitch.setOnClickListener(v -> {
-            pizza.setExtraCheese(extraCheeseSwitch.isActivated());
-            updatePrice();
-            // Handle extra cheese selection logic if needed
+        extraCheese.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // Handle the CheckBox state change here
+                pizza.setExtraCheese(isChecked);
+                updatePrice();
+            }
         });
     }
 
+    /**
+     * Initialize the extra sauce checkbox.
+     */
     private void setUpExtraSauceSwitch() {
-        @SuppressLint("UseSwitchCompatOrMaterialCode") Switch extraSauceSwitch = findViewById(R.id.extraSauce); // Replace with your extraSauce radio button's ID
+        extraSauce = findViewById(R.id.extraSauce); // Replace with your extraSauce radio button's ID
 
-        extraSauceSwitch.setOnClickListener(v -> {
-            pizza.setExtraSauce(extraSauceSwitch.isActivated());
-            updatePrice();
+        extraSauce.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // Handle the CheckBox state change here
+                pizza.setExtraSauce(isChecked);
+                updatePrice();
+            }
         });
     }
 
+    /**
+     * Initialize the Add button.
+     */
     private void setUpAddButton() {
         Button addButton = findViewById(R.id.addToppings);
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -163,6 +185,9 @@ public class BYOPizzaActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Initialize the Remove button.
+     */
     private void setUpRemoveButton() {
         Button removeButton = findViewById(R.id.removeToppings);
         removeButton.setOnClickListener(new View.OnClickListener() {
@@ -177,17 +202,30 @@ public class BYOPizzaActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Initialize the add to order button.
+     */
     private void setUpAddToOrderButton() {
         Button addToOrderButton = findViewById(R.id.addToOrderButton);
         addToOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // ADDITIONAL CODE
+                // ADDITIONAL
+                BuildYourOwn byoPizza = (BuildYourOwn) pizza;
+                if(byoPizza.toppings.size() < 3){
+                    Toast.makeText(BYOPizzaActivity.this, "You need at least 3 toppings!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                cashier.addToOrder(byoPizza);
                 resetView();
+                finish();
             }
         });
     }
 
+    /**
+     * Create a listener for the toppings adapter.
+     */
     private void setUpToppingsClickListener() {
         toppingsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -197,6 +235,9 @@ public class BYOPizzaActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Create a listener for the selected toppings adapter.
+     */
     private void setUpUserToppingsClickListener() {
         userToppingsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -206,6 +247,9 @@ public class BYOPizzaActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Transfer topping to selected topping adapter.
+     */
     private void onAddButtonClicked() {
         // Add logic to move selected topping from toppingsView to userToppingsView
 //        String selectedTopping = (String) toppingsListView.getItemAtPosition(toppingsListView.getSelectedItemPosition());
@@ -216,6 +260,9 @@ public class BYOPizzaActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Transfer topping back list of toppings.
+     */
     private void onRemoveButtonClicked() {
         // Add logic to move selected topping from userToppingsView to toppingsView
 //        String selectedTopping = (String) userToppingsListView.getItemAtPosition(userToppingsListView.getSelectedItemPosition());
@@ -226,6 +273,9 @@ public class BYOPizzaActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Initialize the ListView for toppings.
+     */
     private void initializeToppingsListView(){
         ArrayList<String> allToppings = new ArrayList<>();
         addToppings(allToppings);
@@ -234,6 +284,9 @@ public class BYOPizzaActivity extends AppCompatActivity {
         toppingsListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE); // Enable single choice mode
     }
 
+    /**
+     * Initialize the ListView for selected toppings.
+     */
     private void initializeUserToppingsListView(){
         ArrayList<String> userSelectedToppings = new ArrayList<>();
         userToppingsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, userSelectedToppings);
@@ -241,23 +294,19 @@ public class BYOPizzaActivity extends AppCompatActivity {
         userToppingsListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE); // Enable single choice mode
     }
 
-
-
-
-
-
     /**
-     * HELPER FUNCTIONS
-     * PUBLIC METHODS
-     * OTHER METHODS
+     * Reset the ListView adapters after topping switch.
      */
-
     private void resetAdapters(){
         toppingsListView.setAdapter(toppingsAdapter);
         userToppingsListView.setAdapter(userToppingsAdapter);
         selectedTopping = null;
     }
 
+    /**
+     * Check if a topping can be added
+     * @return true if it can be added and false otherwise.
+     */
     private boolean canAddTopping(){
         if (userToppingsAdapter.getCount() == 7){
             Toast.makeText(BYOPizzaActivity.this,
@@ -268,6 +317,10 @@ public class BYOPizzaActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Check if a topping can be removed (if there's at least 4 toppings left)
+     * @return true if topping can be removed and false otherwise.
+     */
     private boolean canRemoveTopping(){
         if (userToppingsAdapter.getCount() <= 3){
             Toast.makeText(BYOPizzaActivity.this,
@@ -278,6 +331,9 @@ public class BYOPizzaActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Convert topping adapters to an arraylist so it can be inputted into the pizza class.
+     */
     private void convertToppingToArrayList() {
         ArrayList<Topping> returnList = new ArrayList<>();
 
@@ -293,6 +349,10 @@ public class BYOPizzaActivity extends AppCompatActivity {
         byoPizza.setToppings(returnList);
     }
 
+    /**
+     * Simple function to add all available toppings to the ArrayList.
+     * @param allToppings Arraylist to which the toppings need to be added.
+     */
     private void addToppings(ArrayList<String> allToppings){
         allToppings.add("Sausage");
         allToppings.add("Pepperoni");
@@ -310,8 +370,10 @@ public class BYOPizzaActivity extends AppCompatActivity {
         allToppings.add("Buffalo Chicken");
     }
 
+    /**
+     * Reset the view after order is complete.
+     */
     private void resetView(){
-
         initializeToppingsListView();
         initializeUserToppingsListView();
         setUpAddButton();
@@ -323,6 +385,10 @@ public class BYOPizzaActivity extends AppCompatActivity {
         setUpAddToOrderButton();
         setUpSauceSpinner();
         setUpSizeSpinner();
+        extraCheese.setChecked(false);
+        extraSauce.setChecked(false);
+        pizza = PizzaMaker.createPizza("byo");
+        updatePrice();
     }
 
     /**
