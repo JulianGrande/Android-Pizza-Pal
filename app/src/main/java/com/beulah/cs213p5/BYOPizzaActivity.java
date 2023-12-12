@@ -1,7 +1,7 @@
 package com.beulah.cs213p5;// BYOPizzaActivity.java
 
-import android.app.Activity;
-import android.app.ListActivity;
+import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -9,10 +9,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
+
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class BYOPizzaActivity extends AppCompatActivity {
 
@@ -28,10 +33,15 @@ public class BYOPizzaActivity extends AppCompatActivity {
     private Pizza pizza;
     private Cashier cashier;
 
+    private TextView totalPrice;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_byo);
+        
+        pizza = PizzaMaker.createPizza("byo");
+        cashier = Cashier.Cashier();
 
         // Initialize ListView and ArrayAdapter for toppings
         toppingsListView = findViewById(R.id.toppingsView);
@@ -44,13 +54,14 @@ public class BYOPizzaActivity extends AppCompatActivity {
         setUpRemoveButton();
         setUpToppingsClickListener();
         setUpUserToppingsClickListener();
+        setUpExtraCheeseSwitch();
+        setUpExtraSauceSwitch();
         setUpAddToOrderButton();
         setUpSauceSpinner();
         setUpSizeSpinner();
 
-        PizzaMaker pizzaMaker = new PizzaMaker();
-        pizza = pizzaMaker.createPizza("byo");
-        cashier = Cashier.Cashier();
+        totalPrice = findViewById(R.id.totalPrice);
+        updatePrice();
     }
 
 
@@ -71,7 +82,8 @@ public class BYOPizzaActivity extends AppCompatActivity {
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sizeSpinner.setAdapter(adapter);
-        pizza.setSize(Size.fromString(pizzaSize));
+        BuildYourOwn byoPizza = (BuildYourOwn) pizza;
+        byoPizza.setSize(Size.SMALL);
 
         // LISTENER
         sizeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -79,7 +91,9 @@ public class BYOPizzaActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // Update the private variable pizzaSize based on the selected item
                 pizzaSize = parentView.getItemAtPosition(position).toString();
-                pizza.setSize(Size.fromString(pizzaSize));
+                BuildYourOwn byoPizza = (BuildYourOwn) pizza;
+                byoPizza.setSize(Size.fromString(pizzaSize));
+                updatePrice();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
@@ -97,6 +111,8 @@ public class BYOPizzaActivity extends AppCompatActivity {
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sauceSpinner.setAdapter(adapter);
+        BuildYourOwn byoPizza = (BuildYourOwn) pizza;
+        byoPizza.setSauce(Sauce.TOMATO);
 
         // Set the item selected listener for the spinner
         sauceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -104,12 +120,32 @@ public class BYOPizzaActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // Update the private variable pizzaSize based on the selected item
                 pizzaSize = parentView.getItemAtPosition(position).toString();
+                updatePrice();
                 // You can do further actions based on the selected item if needed
             }
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 // Do nothing when nothing is selected
             }
+        });
+    }
+
+    private void setUpExtraCheeseSwitch() {
+        @SuppressLint("UseSwitchCompatOrMaterialCode") Switch extraCheeseSwitch = findViewById(R.id.extraSauce); // Replace with your extraCheese radio button's ID
+
+        extraCheeseSwitch.setOnClickListener(v -> {
+            pizza.setExtraCheese(extraCheeseSwitch.isActivated());
+            updatePrice();
+            // Handle extra cheese selection logic if needed
+        });
+    }
+
+    private void setUpExtraSauceSwitch() {
+        @SuppressLint("UseSwitchCompatOrMaterialCode") Switch extraSauceSwitch = findViewById(R.id.extraSauce); // Replace with your extraSauce radio button's ID
+
+        extraSauceSwitch.setOnClickListener(v -> {
+            pizza.setExtraSauce(extraSauceSwitch.isActivated());
+            updatePrice();
         });
     }
 
@@ -120,6 +156,8 @@ public class BYOPizzaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(canAddTopping()){
                     onAddButtonClicked();
+                    convertToppingToArrayList();
+                    updatePrice();
                 }
             }
         });
@@ -132,6 +170,8 @@ public class BYOPizzaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (canRemoveTopping()){
                     onRemoveButtonClicked();
+                    convertToppingToArrayList();
+                    updatePrice();
                 }
             }
         });
@@ -143,7 +183,6 @@ public class BYOPizzaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // ADDITIONAL CODE
-
                 resetView();
             }
         });
@@ -197,7 +236,6 @@ public class BYOPizzaActivity extends AppCompatActivity {
 
     private void initializeUserToppingsListView(){
         ArrayList<String> userSelectedToppings = new ArrayList<>();
-        userSelectedToppings.add("None Selected");
         userToppingsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, userSelectedToppings);
         userToppingsListView.setAdapter(userToppingsAdapter);
         userToppingsListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE); // Enable single choice mode
@@ -215,9 +253,6 @@ public class BYOPizzaActivity extends AppCompatActivity {
      */
 
     private void resetAdapters(){
-        if(!userToppingsAdapter.isEmpty()){
-            userToppingsAdapter.remove("None Selected");
-        } else { userToppingsAdapter.add("None Selected"); }
         toppingsListView.setAdapter(toppingsAdapter);
         userToppingsListView.setAdapter(userToppingsAdapter);
         selectedTopping = null;
@@ -243,7 +278,7 @@ public class BYOPizzaActivity extends AppCompatActivity {
         return true;
     }
 
-    private ArrayList<Topping> convertToppingToArrayList() {
+    private void convertToppingToArrayList() {
         ArrayList<Topping> returnList = new ArrayList<>();
 
         for (int i = 0; i < userToppingsAdapter.getCount(); i++) {
@@ -254,8 +289,8 @@ public class BYOPizzaActivity extends AppCompatActivity {
                 returnList.add(toppingEnum);
             }
         }
-
-        return returnList;
+         BuildYourOwn byoPizza = (BuildYourOwn) pizza;
+        byoPizza.setToppings(returnList);
     }
 
     private void addToppings(ArrayList<String> allToppings){
@@ -276,8 +311,25 @@ public class BYOPizzaActivity extends AppCompatActivity {
     }
 
     private void resetView(){
+
         initializeToppingsListView();
         initializeUserToppingsListView();
+        setUpAddButton();
+        setUpRemoveButton();
+        setUpToppingsClickListener();
+        setUpUserToppingsClickListener();
+        setUpExtraCheeseSwitch();
+        setUpExtraSauceSwitch();
+        setUpAddToOrderButton();
+        setUpSauceSpinner();
+        setUpSizeSpinner();
+    }
 
+    /**
+     * Updates the price and changes the text field
+     */
+    private void updatePrice(){
+        BuildYourOwn byoPizza = (BuildYourOwn)pizza;
+        totalPrice.setText(String.format("%.2f", byoPizza.price()));
     }
 }

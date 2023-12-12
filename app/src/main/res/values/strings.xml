@@ -4,6 +4,8 @@
     <string name="byo_title">Build Your Own</string>
     <string name="add_button">Add &gt;&gt;</string>
     <string name="remove_button">&lt;&lt; remove</string>
+    <string name="extra_cheese">Extra Cheese</string>
+    <string name="extra_sauce">Extra Sauce</string>
     <string-array name="pizza_sizes">
         <item>Small</item>
         <item>Medium</item>

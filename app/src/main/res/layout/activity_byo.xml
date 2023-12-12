@@ -27,12 +27,6 @@
                 android:layout_margin="8dp"
                 app:srcCompat="@drawable/byo_pizza" />
 
-            <RadioGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-            </RadioGroup>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -69,7 +63,7 @@
             <EditText
                 android:id="@+id/editTextText"
                 android:layout_width="392dp"
-                android:layout_height="56dp"
+                android:layout_height="48dp"
                 android:autofillHints=""
                 android:ems="10"
                 android:inputType="text"
@@ -78,12 +72,13 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="467dp">
+            android:layout_height="463dp">
 
             <ListView
                 android:id="@+id/toppingsView"
                 android:layout_width="129dp"
                 android:layout_height="match_parent"
+                android:background="#E5E5E5"
                 android:entries="@array/specialty_pizzas" />
 
             <LinearLayout
@@ -91,13 +86,31 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+                <Switch
+                    android:id="@+id/extraCheese"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/extra_cheese" />
+
+                <Switch
+                    android:id="@+id/extraSauce"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/extra_sauce" />
+
                 <Button
                     android:id="@+id/addToppings"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_margin="10dp"
                     android:text="@string/add_button"
-                    android:translationY="125dp" />
+                    android:translationY="50dp" />
 
                 <Button
                     android:id="@+id/removeToppings"
@@ -105,19 +118,21 @@
                     android:layout_height="48dp"
                     android:layout_margin="10dp"
                     android:text="@string/remove_button"
-                    android:translationY="175dp" />
+                    android:translationY="100dp" />
+
             </LinearLayout>
 
             <ListView
                 android:id="@+id/userToppingsView"
                 android:layout_width="127dp"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:background="#E6E6E6" />
 
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="64dp">
+            android:layout_height="75dp">
 
             <EditText
                 android:id="@+id/editTextText3"
@@ -133,10 +148,11 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
-                android:id="@+id/textView"
-                android:layout_width="146dp"
-                android:layout_height="39dp"
-                android:layout_marginBottom="5dp" />
+                android:id="@+id/totalPrice"
+                android:layout_width="140dp"
+                android:layout_height="48dp"
+                android:fontFamily="sans-serif"
+                android:textSize="12sp" />
 
             <Button
                 android:id="@+id/addToOrderButton"

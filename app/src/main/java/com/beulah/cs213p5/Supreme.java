@@ -86,12 +86,15 @@ public class Supreme extends Pizza{
         switch(this.size.getName()){
             case "small":{
                 basePrice = SMALL_PRICE;
+                break;
             }
             case "medium":{
                 basePrice = SMALL_PRICE + 2;
+                break;
             }
             case "large":{
                 basePrice = SMALL_PRICE + 4;
+                break;
             }
         }
 //        switch(this.size.getName()){

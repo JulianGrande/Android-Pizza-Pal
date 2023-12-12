@@ -26,5 +26,18 @@ public enum Sauce {
         return sauce;
     }
 
-
+    /**
+     * convert sauce string to sauce enum
+     * @param sauce string
+     * @return sauce enum
+     */
+    public static Sauce fromString(String sauce) {
+        for (Sauce t : Sauce.values()) {
+            if (t.sauce.equalsIgnoreCase(sauce)) {
+                return t;
+            }
+        }
+        // Handle the case where the input topping doesn't match any enum value
+        throw new IllegalArgumentException("No enum constant for: " + sauce);
+    }
 }
