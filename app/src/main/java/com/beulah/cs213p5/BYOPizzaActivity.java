@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -33,6 +34,9 @@ public class BYOPizzaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_byo);
+        
+        pizza = PizzaMaker.createPizza("byo");
+        cashier = Cashier.Cashier();
 
         // Initialize ListView and ArrayAdapter for toppings
         toppingsListView = findViewById(R.id.toppingsView);
@@ -45,13 +49,11 @@ public class BYOPizzaActivity extends AppCompatActivity {
         setUpRemoveButton();
         setUpToppingsClickListener();
         setUpUserToppingsClickListener();
+        setUpExtraCheeseRadioButton();
+        setUpExtraSauceRadioButton();
         setUpAddToOrderButton();
         setUpSauceSpinner();
         setUpSizeSpinner();
-
-        PizzaMaker pizzaMaker = new PizzaMaker();
-        pizza = pizzaMaker.createPizza("byo");
-        cashier = Cashier.Cashier();
     }
 
 
@@ -72,8 +74,7 @@ public class BYOPizzaActivity extends AppCompatActivity {
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sizeSpinner.setAdapter(adapter);
-        pizzaSize = "Small";
-        pizza.setSize(Size.fromString(pizzaSize));
+        pizza.setSize(Size.SMALL);
 
         // LISTENER
         sizeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -100,8 +101,7 @@ public class BYOPizzaActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sauceSpinner.setAdapter(adapter);
         BuildYourOwn byoPizza = (BuildYourOwn) pizza;
-        byoPizza.setSauce(Sauce.fromString(pizzaSauce));
-
+        byoPizza.setSauce(Sauce.TOMATO);
 
         // Set the item selected listener for the spinner
         sauceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -115,6 +115,24 @@ public class BYOPizzaActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parentView) {
                 // Do nothing when nothing is selected
             }
+        });
+    }
+
+    private void setUpExtraCheeseRadioButton() {
+        RadioButton extraCheeseRadioButton = findViewById(R.id.extraCheese); // Replace with your extraCheese radio button's ID
+
+        extraCheeseRadioButton.setOnClickListener(v -> {
+            pizza.setExtraCheese(extraCheeseRadioButton.isChecked());
+            // Handle extra cheese selection logic if needed
+        });
+    }
+
+    private void setUpExtraSauceRadioButton() {
+        RadioButton extraSauceRadioButton = findViewById(R.id.extraSauce); // Replace with your extraSauce radio button's ID
+
+        extraSauceRadioButton.setOnClickListener(v -> {
+            pizza.setExtraSauce(extraSauceRadioButton.isChecked());
+            // Handle extra sauce selection logic if needed
         });
     }
 
