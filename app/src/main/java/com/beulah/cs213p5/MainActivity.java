@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void handleYourOrder(){
         Intent intent = new Intent(MainActivity.this, YourOrderActivity.class);
+        startActivity(intent);
     }
 
     private void handleStoreOrders(){
