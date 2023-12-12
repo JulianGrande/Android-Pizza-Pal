@@ -49,6 +49,7 @@ public class SpecialtyExtraActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Toast.makeText(this, "Changing View To Extra!", Toast.LENGTH_SHORT).show();
         setContentView(R.layout.activity_specialty_extra);
         cashier = Cashier.Cashier();
         pizzaMaker = new PizzaMaker();
@@ -130,7 +131,7 @@ public class SpecialtyExtraActivity extends AppCompatActivity {
 
         cashier.addToOrder(pizza);
         Toast.makeText(this, "Pizza Added To Order!", Toast.LENGTH_SHORT).show();
-        finish();
+//        finish();
         return null;
 
     }
