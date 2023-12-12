@@ -148,6 +148,7 @@ public class BYOPizzaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(canAddTopping()){
                     onAddButtonClicked();
+                    convertToppingToArrayList();
                 }
             }
         });
@@ -160,6 +161,7 @@ public class BYOPizzaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (canRemoveTopping()){
                     onRemoveButtonClicked();
+                    convertToppingToArrayList();
                 }
             }
         });
@@ -266,7 +268,7 @@ public class BYOPizzaActivity extends AppCompatActivity {
         return true;
     }
 
-    private ArrayList<Topping> convertToppingToArrayList() {
+    private void convertToppingToArrayList() {
         ArrayList<Topping> returnList = new ArrayList<>();
 
         for (int i = 0; i < userToppingsAdapter.getCount(); i++) {
@@ -277,7 +279,8 @@ public class BYOPizzaActivity extends AppCompatActivity {
                 returnList.add(toppingEnum);
             }
         }
-        return returnList;
+         BuildYourOwn byoPizza = (BuildYourOwn) pizza;
+        byoPizza.setToppings(returnList);
     }
 
     private void addToppings(ArrayList<String> allToppings){
