@@ -40,7 +40,11 @@ public class YourOrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_your_order);
         setAllFields();
-        pizzas = cashier.getOrder().getPizzas();
+        pizzas = new ArrayList<>();
+        cashier = Cashier.Cashier();
+        if(cashier.getOrder().getPizzas() != null){
+            pizzas = cashier.getOrder().getPizzas();
+        }
         ordersAsStrings = new ArrayList<>();
         for(int i = 0; i < pizzas.size(); i++){
             ordersAsStrings.add(pizzas.get(i).toString());
