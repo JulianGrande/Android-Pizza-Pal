@@ -108,8 +108,10 @@ public class YourOrderActivity extends AppCompatActivity {
                 if(pizzaToRemove != null){
                     for(int j = 0; j < pizzas.size(); j++){
                         if(pizzaToRemove.equalsIgnoreCase(pizzas.get(j).toString())){
+                            ordersAsStrings.remove(j);
                             pizzas.remove(j);
                             ordersAdapter.notifyDataSetChanged();
+                            yourOrderList.setAdapter(ordersAdapter);
                             break;
                         }
                     }
