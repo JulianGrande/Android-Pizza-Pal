@@ -1,12 +1,12 @@
 package com.beulah.cs213p5;// BYOPizzaActivity.java
 
-import android.annotation.SuppressLint;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -33,6 +33,8 @@ public class BYOPizzaActivity extends AppCompatActivity {
     private Pizza pizza;
     private Cashier cashier;
 
+    private CheckBox extraCheese;
+    private CheckBox extraSauce;
     private TextView totalPrice;
 
     @Override
@@ -131,22 +133,31 @@ public class BYOPizzaActivity extends AppCompatActivity {
     }
 
     private void setUpExtraCheeseSwitch() {
-        @SuppressLint("UseSwitchCompatOrMaterialCode") Switch extraCheeseSwitch = findViewById(R.id.extraSauce); // Replace with your extraCheese radio button's ID
+        extraCheese = findViewById(R.id.extraCheese); // Replace with your extraCheese radio button's ID
 
-        extraCheeseSwitch.setOnClickListener(v -> {
-            pizza.setExtraCheese(extraCheeseSwitch.isActivated());
-            updatePrice();
-            // Handle extra cheese selection logic if needed
+        extraCheese.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // Handle the CheckBox state change here
+                pizza.setExtraCheese(isChecked);
+                updatePrice();
+            }
         });
     }
 
     private void setUpExtraSauceSwitch() {
-        @SuppressLint("UseSwitchCompatOrMaterialCode") Switch extraSauceSwitch = findViewById(R.id.extraSauce); // Replace with your extraSauce radio button's ID
+        extraSauce = findViewById(R.id.extraSauce); // Replace with your extraSauce radio button's ID
 
-        extraSauceSwitch.setOnClickListener(v -> {
-            pizza.setExtraSauce(extraSauceSwitch.isActivated());
-            updatePrice();
+        extraSauce.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // Handle the CheckBox state change here
+                pizza.setExtraSauce(isChecked);
+                updatePrice();
+            }
         });
+
+
     }
 
     private void setUpAddButton() {
@@ -182,7 +193,14 @@ public class BYOPizzaActivity extends AppCompatActivity {
         addToOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // ADDITIONAL CODE
+                // ADDITIONAL
+                BuildYourOwn byoPizza = (BuildYourOwn) pizza;
+                if(byoPizza.toppings.size() < 3){
+                    Toast.makeText(BYOPizzaActivity.this, "You need at least 3 toppings!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                cashier.addToOrder(byoPizza);
+
                 resetView();
             }
         });
@@ -323,6 +341,9 @@ public class BYOPizzaActivity extends AppCompatActivity {
         setUpAddToOrderButton();
         setUpSauceSpinner();
         setUpSizeSpinner();
+        extraCheese.setChecked(false);
+        extraSauce.setChecked(false);
+        updatePrice();
     }
 
     /**

@@ -86,20 +86,20 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <Switch
+                <CheckBox
                     android:id="@+id/extraCheese"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginHorizontal="5dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginBottom="10dp"
                     android:text="@string/extra_cheese" />
 
-                <Switch
+                <CheckBox
                     android:id="@+id/extraSauce"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="48dp"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginHorizontal="5dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginBottom="10dp"
                     android:text="@string/extra_sauce" />
@@ -132,7 +132,7 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="75dp">
+            android:layout_height="78dp">
 
             <EditText
                 android:id="@+id/editTextText3"
@@ -149,10 +149,13 @@
 
             <TextView
                 android:id="@+id/totalPrice"
-                android:layout_width="140dp"
+                android:layout_width="138dp"
                 android:layout_height="48dp"
                 android:fontFamily="sans-serif"
-                android:textSize="12sp" />
+                android:textAlignment="viewStart"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+                android:textSize="16sp"
+                android:translationY="5dp" />
 
             <Button
                 android:id="@+id/addToOrderButton"
