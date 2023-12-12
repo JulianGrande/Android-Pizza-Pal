@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void handleStoreOrders(){
-
+        Intent intent = new Intent(MainActivity.this, StoreOrderActivity.class);
+        startActivity(intent);
     }
 }
