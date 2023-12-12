@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -44,6 +45,7 @@ public class YourOrderActivity extends AppCompatActivity {
         cashier = Cashier.Cashier();
         if(cashier.getOrder().getPizzas() != null){
             pizzas = cashier.getOrder().getPizzas();
+            Toast.makeText(this, pizzas.toString(), Toast.LENGTH_LONG).show();
         }
         ordersAsStrings = new ArrayList<>();
         for(int i = 0; i < pizzas.size(); i++){
@@ -69,33 +71,36 @@ public class YourOrderActivity extends AppCompatActivity {
         placeOrderYourOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addDialog();
+                Toast.makeText(YourOrderActivity.this, "Listener triggered", Toast.LENGTH_SHORT).show();
+                cashier.addToStore();
+                finish();
             }
         });
     }
 
-    private void addDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Add Order?");
-        builder.setMessage("Are you sure you want to add this to the order?");
-
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if(!pizzas.isEmpty()){
-                    cashier.addToStore();
-                    finish();
-                }
-            }
-        });
-
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //leave blank
-            }
-        });
-    }
+//    private void addDialog(){
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setTitle("Add Order?");
+//        builder.setMessage("Are you sure you want to add this to the order?");
+//
+//        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+////                if(!pizzas.isEmpty()){
+//                    Toast.makeText(YourOrderActivity.this, "Triggered !isEmpty", Toast.LENGTH_SHORT).show();
+//                    cashier.addToStore();
+//                    finish();
+////                }
+//            }
+//        });
+//
+//        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                //leave blank
+//            }
+//        });
+//    }
 
     private void removeDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
