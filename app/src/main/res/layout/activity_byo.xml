@@ -63,7 +63,7 @@
             <EditText
                 android:id="@+id/editTextText"
                 android:layout_width="392dp"
-                android:layout_height="match_parent"
+                android:layout_height="48dp"
                 android:autofillHints=""
                 android:ems="10"
                 android:inputType="text"
@@ -86,22 +86,23 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <RadioGroup
+                <Switch
+                    android:id="@+id/extraCheese"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="48dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/extra_cheese" />
 
-                    <RadioButton
-                        android:id="@+id/extraCheese"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/extra_cheese" />
-
-                    <RadioButton
-                        android:id="@+id/extraSauce"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/extra_sauce" />
-                </RadioGroup>
+                <Switch
+                    android:id="@+id/extraSauce"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/extra_sauce" />
 
                 <Button
                     android:id="@+id/addToppings"
@@ -118,6 +119,7 @@
                     android:layout_margin="10dp"
                     android:text="@string/remove_button"
                     android:translationY="100dp" />
+
             </LinearLayout>
 
             <ListView

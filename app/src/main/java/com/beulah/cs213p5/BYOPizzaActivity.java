@@ -1,18 +1,18 @@
 package com.beulah.cs213p5;// BYOPizzaActivity.java
 
-import android.app.Activity;
-import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
+
 import java.util.ArrayList;
 
 public class BYOPizzaActivity extends AppCompatActivity {
@@ -119,7 +119,7 @@ public class BYOPizzaActivity extends AppCompatActivity {
     }
 
     private void setUpExtraCheeseRadioButton() {
-        RadioButton extraCheeseRadioButton = findViewById(R.id.extraCheese); // Replace with your extraCheese radio button's ID
+        Switch extraCheeseRadioButton = findViewById(R.id.extraSauce); // Replace with your extraCheese radio button's ID
 
         extraCheeseRadioButton.setOnClickListener(v -> {
             pizza.setExtraCheese(extraCheeseRadioButton.isChecked());
@@ -128,7 +128,7 @@ public class BYOPizzaActivity extends AppCompatActivity {
     }
 
     private void setUpExtraSauceRadioButton() {
-        RadioButton extraSauceRadioButton = findViewById(R.id.extraSauce); // Replace with your extraSauce radio button's ID
+        Switch extraSauceRadioButton = findViewById(R.id.extraSauce); // Replace with your extraSauce radio button's ID
 
         extraSauceRadioButton.setOnClickListener(v -> {
             pizza.setExtraSauce(extraSauceRadioButton.isChecked());
