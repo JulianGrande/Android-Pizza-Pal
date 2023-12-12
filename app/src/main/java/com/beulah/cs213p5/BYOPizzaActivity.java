@@ -217,8 +217,8 @@ public class BYOPizzaActivity extends AppCompatActivity {
                     return;
                 }
                 cashier.addToOrder(byoPizza);
-
                 resetView();
+                finish();
             }
         });
     }
