@@ -166,7 +166,6 @@ public class BYOPizzaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // ADDITIONAL CODE
-
                 resetView();
             }
         });
@@ -220,7 +219,6 @@ public class BYOPizzaActivity extends AppCompatActivity {
 
     private void initializeUserToppingsListView(){
         ArrayList<String> userSelectedToppings = new ArrayList<>();
-        userSelectedToppings.add("None Selected");
         userToppingsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, userSelectedToppings);
         userToppingsListView.setAdapter(userToppingsAdapter);
         userToppingsListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE); // Enable single choice mode
@@ -238,9 +236,6 @@ public class BYOPizzaActivity extends AppCompatActivity {
      */
 
     private void resetAdapters(){
-        if(!userToppingsAdapter.isEmpty()){
-            userToppingsAdapter.remove("None Selected");
-        } else { userToppingsAdapter.add("None Selected"); }
         toppingsListView.setAdapter(toppingsAdapter);
         userToppingsListView.setAdapter(userToppingsAdapter);
         selectedTopping = null;
@@ -298,8 +293,17 @@ public class BYOPizzaActivity extends AppCompatActivity {
     }
 
     private void resetView(){
+
         initializeToppingsListView();
         initializeUserToppingsListView();
-
+        setUpAddButton();
+        setUpRemoveButton();
+        setUpToppingsClickListener();
+        setUpUserToppingsClickListener();
+        setUpExtraCheeseRadioButton();
+        setUpExtraSauceRadioButton();
+        setUpAddToOrderButton();
+        setUpSauceSpinner();
+        setUpSizeSpinner();
     }
 }
