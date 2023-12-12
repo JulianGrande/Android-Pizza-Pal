@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/editTextText5"
+        android:id="@+id/yourOrderNum"
         android:layout_width="211dp"
         android:layout_height="51dp"
         android:layout_marginStart="75dp"
@@ -29,7 +29,7 @@
         android:layout_marginEnd="39dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText5" />
+        app:layout_constraintTop_toBottomOf="@+id/yourOrderNum" />
 
     <TextView
         android:id="@+id/subtotalYourOrder"
