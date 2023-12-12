@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -55,31 +56,37 @@ public class SpecialtyExtraActivity extends AppCompatActivity {
         setAllFields();
         intent = getIntent();
         setResourcesForFields();
-        extraSauceBox.setOnClickListener(new View.OnClickListener() {
+        extraSauceBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                pizza.setExtraSauce(extraSauceBox.isActivated());
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                pizza.setExtraSauce(isChecked);
                 price.setText(String.format("%.2f", pizza.price()));
             }
         });
-        extraCheesebox.setOnClickListener(new View.OnClickListener() {
+        extraCheesebox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                pizza.setExtraCheese(extraCheesebox.isActivated());
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                pizza.setExtraCheese(isChecked);
                 price.setText(String.format("%.2f", pizza.price()));
             }
         });
-        sizeGroup.setOnClickListener(new View.OnClickListener() {
+        sizeGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                if(small.isActivated()){
-                    pizza.setSize(Size.SMALL);
-                }
-                if(medium.isActivated()){
-                    pizza.setSize(Size.MEDIUM);
-                }
-                if(large.isActivated()){
-                    pizza.setSize(Size.LARGE);
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton checked = findViewById(checkedId);
+                switch(checked.getText().toString()){
+                    case ("Small"):{
+                        pizza.setSize(Size.SMALL);
+                        break;
+                    }
+                    case ("Medium"):{
+                        pizza.setSize(Size.MEDIUM);
+                        break;
+                    }
+                    case ("Large"):{
+                        pizza.setSize(Size.LARGE);
+                        break;
+                    }
                 }
                 price.setText(String.format("%.2f", pizza.price()));
             }
