@@ -67,6 +67,16 @@ class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder> {
         holder.pizza_image.setImageResource(items.get(position).getPizzaImage());
         holder.pizza_row.setText(String.format("%.2f", items.get(position).getPizzaPrice()));
 
+        holder.parentLayout.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, SpecialtyExtraActivity.class);
+                intent.putExtra("ITEM", items.get(holder.getAbsoluteAdapterPosition()).getPizzaName());
+                intent.putExtra("PICID", items.get(holder.getAbsoluteAdapterPosition()).getPizzaImage());
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     /**
@@ -91,21 +101,11 @@ class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder> {
         public ItemsHolder(@NonNull View itemView){
             super(itemView);
             //make simple view for one pizza and add these attributes,
-            //name, image, and row as toppings list
+            //name, image, and row as price
             pizza_name = itemView.findViewById(R.id.pizza_flavor);
             pizza_image = itemView.findViewById(R.id.im_item);
             pizza_row = itemView.findViewById(R.id.pizza_price);
             parentLayout = itemView.findViewById(R.id.rowLayout);
-
-            parentLayout.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(itemView.getContext(), SpecialtyExtraActivity.class);
-                    intent.putExtra("ITEM", pizza_name.getText());
-                    intent.putExtra("PICID", pizza_image.getId());
-                    itemView.getContext().startActivity(intent);
-                }
-            });
         }
 
     }
