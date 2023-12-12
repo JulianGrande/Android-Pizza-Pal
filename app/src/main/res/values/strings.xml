@@ -40,4 +40,10 @@
         <item>hawaiian</item>
         <item>rutgers special</item>
     </string-array>
+    <string name="yourOrderText">Your Order</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="tax">Taxes</string>
+    <string name="total">Total</string>
+    <string name="CancelYourOrder">Cancel Order</string>
+    <string name="PlaceYourOrder">Place Order</string>
 </resources>
