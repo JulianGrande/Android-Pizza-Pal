@@ -96,6 +96,7 @@ public class SpecialtyExtraActivity extends AppCompatActivity {
             public void onClick(View v) {
                 cashier.addToOrder(pizza);
                 Toast.makeText(getApplicationContext(), "Pizza Added To Order!", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
         populateListViewToppings();
