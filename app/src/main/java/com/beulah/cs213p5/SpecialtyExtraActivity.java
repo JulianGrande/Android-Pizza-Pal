@@ -66,7 +66,7 @@ public class SpecialtyExtraActivity extends AppCompatActivity {
         Intent intent = getIntent();
         title.setText(intent.getStringExtra("ITEM"));
         pizzaPic.setImageResource(intent.getIntExtra("PICID", R.drawable.your_order_pizza));
-        pizza = pizzaMaker.createPizza(intent.getStringExtra("ITEM"));
+        if(intent.getStringExtra("ITEM") != null){pizza = pizzaMaker.createPizza(intent.getStringExtra("ITEM"));}
         price.setText(String.format("%.2f", pizza.price()));
         extraSauce.setOnClickListener(extrasListener());
         extraCheese.setOnClickListener(extrasListener());

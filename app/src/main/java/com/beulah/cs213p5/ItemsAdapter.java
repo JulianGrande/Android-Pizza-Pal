@@ -1,5 +1,7 @@
 package com.beulah.cs213p5;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -9,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -97,7 +100,7 @@ class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder> {
             parentLayout.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
-                    Intent intent =new Intent(itemView.getContext(), SpecialtyExtraActivity.class);
+                    Intent intent = new Intent(itemView.getContext(), SpecialtyExtraActivity.class);
                     intent.putExtra("ITEM", pizza_name.getText());
                     intent.putExtra("PICID", pizza_image.getId());
                     itemView.getContext().startActivity(intent);

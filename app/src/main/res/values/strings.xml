@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">cs213P5</string>
+    <string name="app_name">RU Pizzeria</string>
     <string name="add_to_order_button">Add To Order</string>
     <string name="byo_title">Build Your Own</string>
     <string name="add_button">Add &gt;&gt;</string>
