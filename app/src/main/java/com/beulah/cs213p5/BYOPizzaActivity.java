@@ -1,6 +1,7 @@
 package com.beulah.cs213p5;// BYOPizzaActivity.java
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -81,7 +82,8 @@ public class BYOPizzaActivity extends AppCompatActivity {
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sizeSpinner.setAdapter(adapter);
-        pizza.setSize(Size.SMALL);
+        BuildYourOwn byoPizza = (BuildYourOwn) pizza;
+        byoPizza.setSize(Size.SMALL);
 
         // LISTENER
         sizeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -89,7 +91,8 @@ public class BYOPizzaActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // Update the private variable pizzaSize based on the selected item
                 pizzaSize = parentView.getItemAtPosition(position).toString();
-                pizza.setSize(Size.fromString(pizzaSize));
+                BuildYourOwn byoPizza = (BuildYourOwn) pizza;
+                byoPizza.setSize(Size.fromString(pizzaSize));
                 updatePrice();
             }
             @Override
@@ -327,6 +330,6 @@ public class BYOPizzaActivity extends AppCompatActivity {
      */
     private void updatePrice(){
         BuildYourOwn byoPizza = (BuildYourOwn)pizza;
-        totalPrice.setText(String.format(Locale.ENGLISH, "%.2f", byoPizza.price()));
+        totalPrice.setText(String.format("%.2f", byoPizza.price()));
     }
 }
