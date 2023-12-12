@@ -38,6 +38,7 @@ public class SpecialtyExtraActivity extends AppCompatActivity {
     private PizzaMaker pizzaMaker;
     private ArrayAdapter<String> toppingsAdapter;
     private ArrayList<String> toppingStringList;
+    private Intent intent;
 
     /**
      * Initializes all important fields with values belonging to the current pizza type, and handles adding to order
@@ -49,26 +50,10 @@ public class SpecialtyExtraActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toast.makeText(this, "Changing View To Extra!", Toast.LENGTH_SHORT).show();
         setContentView(R.layout.activity_specialty_extra);
-        cashier = Cashier.Cashier();
-        pizzaMaker = new PizzaMaker();
-        pizzaPic = findViewById(R.id.specialtyExtraPic);
-        toppings = findViewById(R.id.specialtyExtraLV);
-        title = findViewById(R.id.specialtyExtraTitle);
-        extraSauce = findViewById(R.id.specialtyExtraSauce);
-        extraCheese = findViewById(R.id.specialtyExtraCheese);
-        small = findViewById(R.id.specialtyExtraSmall);
-        medium = findViewById(R.id.specialtyExtraMedium);
-        large = findViewById(R.id.specialtyExtraLarge);
-        addToOrder = findViewById(R.id.specialtyExtraATO);
-        price = findViewById(R.id.specialtyExtraPrice);
-        sizeGroup = findViewById(R.id.sizeGroup);
-        Intent intent = getIntent();
-        title.setText(intent.getStringExtra("ITEM"));
-        pizzaPic.setImageResource(intent.getIntExtra("PICID", R.drawable.your_order_pizza));
-        if(intent.getStringExtra("ITEM") != null){pizza = pizzaMaker.createPizza(intent.getStringExtra("ITEM"));}
-        price.setText(String.format("%.2f", pizza.price()));
+        setAllFields();
+        intent = getIntent();
+        setResourcesForFields();
         extraSauce.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,16 +83,13 @@ public class SpecialtyExtraActivity extends AppCompatActivity {
                 price.setText(String.format("%.2f", pizza.price()));
             }
         });
-//        addToOrder.setOnClickListener(addToOrder());
         addToOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 cashier.addToOrder(pizza);
-//                Toast.makeText(this, "Pizza Added To Order!", Toast.LENGTH_SHORT).show();
                 Toast.makeText(getApplicationContext(), "Pizza Added To Order!", Toast.LENGTH_SHORT).show();
             }
         });
-        populateListViewToppings();
     }
 
 
@@ -125,6 +107,36 @@ public class SpecialtyExtraActivity extends AppCompatActivity {
         toppings.setAdapter(toppingsAdapter);
         toppings.setChoiceMode(ListView.CHOICE_MODE_NONE);
 
+    }
+
+    /**
+     * Helper method that finds ID's for required fields
+     */
+    private void setAllFields(){
+        cashier = Cashier.Cashier();
+        pizzaMaker = new PizzaMaker();
+        pizzaPic = findViewById(R.id.specialtyExtraPic);
+        toppings = findViewById(R.id.specialtyExtraLV);
+        title = findViewById(R.id.specialtyExtraTitle);
+        extraSauce = findViewById(R.id.specialtyExtraSauce);
+        extraCheese = findViewById(R.id.specialtyExtraCheese);
+        small = findViewById(R.id.specialtyExtraSmall);
+        medium = findViewById(R.id.specialtyExtraMedium);
+        large = findViewById(R.id.specialtyExtraLarge);
+        addToOrder = findViewById(R.id.specialtyExtraATO);
+        price = findViewById(R.id.specialtyExtraPrice);
+        sizeGroup = findViewById(R.id.sizeGroup);
+        populateListViewToppings();
+    }
+
+    /**
+     * Helper method that sets the correct resources for the title, image view, and price fields
+     */
+    private void setResourcesForFields(){
+        title.setText(intent.getStringExtra("ITEM"));
+        pizzaPic.setImageResource(intent.getIntExtra("PICID", R.drawable.your_order_pizza));
+        if(intent.getStringExtra("ITEM") != null){pizza = pizzaMaker.createPizza(intent.getStringExtra("ITEM"));}
+        price.setText(String.format("%.2f", pizza.price()));
     }
 
 }
