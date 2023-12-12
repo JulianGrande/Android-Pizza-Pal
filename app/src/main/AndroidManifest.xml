@@ -30,6 +30,9 @@
         <activity android:name=".SpecialtyExtraActivity"
             android:exported="true">
         </activity>
+        <activity android:name=".YourOrderActivity"
+            android:exported="false">
+        </activity>
     </application>
 
 </manifest>
