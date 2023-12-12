@@ -11,6 +11,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
         android:layout_marginTop="17dp"
+        android:layout_marginEnd="39dp"
+        android:layout_marginBottom="145dp"
+        app:layout_constraintBottom_toTopOf="@+id/specialtyExtraLV"
+        app:layout_constraintEnd_toStartOf="@+id/specialtyExtraTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
