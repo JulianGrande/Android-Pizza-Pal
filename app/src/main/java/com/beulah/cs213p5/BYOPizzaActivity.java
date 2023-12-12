@@ -1,5 +1,6 @@
 package com.beulah.cs213p5;// BYOPizzaActivity.java
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -8,12 +9,14 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class BYOPizzaActivity extends AppCompatActivity {
 
@@ -29,6 +32,7 @@ public class BYOPizzaActivity extends AppCompatActivity {
     private Pizza pizza;
     private Cashier cashier;
 
+    private TextView totalPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +53,13 @@ public class BYOPizzaActivity extends AppCompatActivity {
         setUpRemoveButton();
         setUpToppingsClickListener();
         setUpUserToppingsClickListener();
-        setUpExtraCheeseRadioButton();
-        setUpExtraSauceRadioButton();
+        setUpExtraCheeseSwitch();
+        setUpExtraSauceSwitch();
         setUpAddToOrderButton();
         setUpSauceSpinner();
         setUpSizeSpinner();
+
+        totalPrice = findViewById(R.id.totalPrice);
     }
 
 
@@ -118,21 +124,20 @@ public class BYOPizzaActivity extends AppCompatActivity {
         });
     }
 
-    private void setUpExtraCheeseRadioButton() {
-        Switch extraCheeseRadioButton = findViewById(R.id.extraSauce); // Replace with your extraCheese radio button's ID
+    private void setUpExtraCheeseSwitch() {
+        @SuppressLint("UseSwitchCompatOrMaterialCode") Switch extraCheeseSwitch = findViewById(R.id.extraSauce); // Replace with your extraCheese radio button's ID
 
-        extraCheeseRadioButton.setOnClickListener(v -> {
-            pizza.setExtraCheese(extraCheeseRadioButton.isChecked());
+        extraCheeseSwitch.setOnClickListener(v -> {
+            pizza.setExtraCheese(extraCheeseSwitch.isActivated());
             // Handle extra cheese selection logic if needed
         });
     }
 
-    private void setUpExtraSauceRadioButton() {
-        Switch extraSauceRadioButton = findViewById(R.id.extraSauce); // Replace with your extraSauce radio button's ID
+    private void setUpExtraSauceSwitch() {
+        @SuppressLint("UseSwitchCompatOrMaterialCode") Switch extraSauceSwitch = findViewById(R.id.extraSauce); // Replace with your extraSauce radio button's ID
 
-        extraSauceRadioButton.setOnClickListener(v -> {
-            pizza.setExtraSauce(extraSauceRadioButton.isChecked());
-            // Handle extra sauce selection logic if needed
+        extraSauceSwitch.setOnClickListener(v -> {
+            pizza.setExtraSauce(extraSauceSwitch.isActivated());
         });
     }
 
@@ -300,10 +305,18 @@ public class BYOPizzaActivity extends AppCompatActivity {
         setUpRemoveButton();
         setUpToppingsClickListener();
         setUpUserToppingsClickListener();
-        setUpExtraCheeseRadioButton();
-        setUpExtraSauceRadioButton();
+        setUpExtraCheeseSwitch();
+        setUpExtraSauceSwitch();
         setUpAddToOrderButton();
         setUpSauceSpinner();
         setUpSizeSpinner();
+    }
+
+    /**
+     * Updates the price and changes the text field
+     */
+    private void updatePrice(){
+        BuildYourOwn byoPizza = (BuildYourOwn)pizza;
+        totalPrice.setText(String.format(Locale.ENGLISH, "%.2f", byoPizza.price()));
     }
 }
