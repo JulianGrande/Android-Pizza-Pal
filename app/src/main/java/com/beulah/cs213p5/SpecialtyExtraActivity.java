@@ -69,43 +69,47 @@ public class SpecialtyExtraActivity extends AppCompatActivity {
         pizzaPic.setImageResource(intent.getIntExtra("PICID", R.drawable.your_order_pizza));
         if(intent.getStringExtra("ITEM") != null){pizza = pizzaMaker.createPizza(intent.getStringExtra("ITEM"));}
         price.setText(String.format("%.2f", pizza.price()));
-        extraSauce.setOnClickListener(extrasListener());
-        extraCheese.setOnClickListener(extrasListener());
-        sizeGroup.setOnClickListener(sizeListener());
-        addToOrder.setOnClickListener(addToOrder());
+        extraSauce.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pizza.setExtraSauce(extraSauce.isActivated());
+                price.setText(String.format("%.2f", pizza.price()));
+            }
+        });
+        extraCheese.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pizza.setExtraCheese(extraCheese.isActivated());
+                price.setText(String.format("%.2f", pizza.price()));
+            }
+        });
+        sizeGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(small.isActivated()){
+                    pizza.setSize(Size.SMALL);
+                }
+                if(medium.isActivated()){
+                    pizza.setSize(Size.MEDIUM);
+                }
+                if(large.isActivated()){
+                    pizza.setSize(Size.LARGE);
+                }
+                price.setText(String.format("%.2f", pizza.price()));
+            }
+        });
+//        addToOrder.setOnClickListener(addToOrder());
+        addToOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cashier.addToOrder(pizza);
+//                Toast.makeText(this, "Pizza Added To Order!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Pizza Added To Order!", Toast.LENGTH_SHORT).show();
+            }
+        });
         populateListViewToppings();
     }
 
-    /**
-     * Listener for the buttons 'extraSauce' and 'extraCheese' and updates price field
-     * @return null
-     */
-    private View.OnClickListener extrasListener(){
-        pizza.setExtraSauce(extraSauce.isActivated());
-        pizza.setExtraCheese(extraCheese.isActivated());
-        price.setText(String.format("%.2f", pizza.price()));
-        return null;
-    }
-
-    /**
-     * Listener for the radio group containing size options for the pizza, updates price field
-     * @return null
-     */
-    private View.OnClickListener sizeListener(){
-
-        if(small.isActivated()){
-            pizza.setSize(Size.SMALL);
-        }
-        if(medium.isActivated()){
-            pizza.setSize(Size.MEDIUM);
-        }
-        if(large.isActivated()){
-            pizza.setSize(Size.LARGE);
-        }
-        price.setText(String.format("%.2f", pizza.price()));
-        return null;
-
-    }
 
     /**
      * Populates the list view with the toppings of the specialty pizza
@@ -120,19 +124,6 @@ public class SpecialtyExtraActivity extends AppCompatActivity {
         toppingsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, toppingStringList);
         toppings.setAdapter(toppingsAdapter);
         toppings.setChoiceMode(ListView.CHOICE_MODE_NONE);
-
-    }
-
-    /**
-     * Listener for the 'Add To Order' button, shows the user a brief toast and redirects back to recycler
-     * @return null
-     */
-    private View.OnClickListener addToOrder(){
-
-        cashier.addToOrder(pizza);
-        Toast.makeText(this, "Pizza Added To Order!", Toast.LENGTH_SHORT).show();
-//        finish();
-        return null;
 
     }
 
