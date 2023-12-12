@@ -60,6 +60,7 @@ public class BYOPizzaActivity extends AppCompatActivity {
         setUpSizeSpinner();
 
         totalPrice = findViewById(R.id.totalPrice);
+        updatePrice();
     }
 
 
@@ -89,6 +90,7 @@ public class BYOPizzaActivity extends AppCompatActivity {
                 // Update the private variable pizzaSize based on the selected item
                 pizzaSize = parentView.getItemAtPosition(position).toString();
                 pizza.setSize(Size.fromString(pizzaSize));
+                updatePrice();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
@@ -115,6 +117,7 @@ public class BYOPizzaActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // Update the private variable pizzaSize based on the selected item
                 pizzaSize = parentView.getItemAtPosition(position).toString();
+                updatePrice();
                 // You can do further actions based on the selected item if needed
             }
             @Override
@@ -129,6 +132,7 @@ public class BYOPizzaActivity extends AppCompatActivity {
 
         extraCheeseSwitch.setOnClickListener(v -> {
             pizza.setExtraCheese(extraCheeseSwitch.isActivated());
+            updatePrice();
             // Handle extra cheese selection logic if needed
         });
     }
@@ -138,6 +142,7 @@ public class BYOPizzaActivity extends AppCompatActivity {
 
         extraSauceSwitch.setOnClickListener(v -> {
             pizza.setExtraSauce(extraSauceSwitch.isActivated());
+            updatePrice();
         });
     }
 
@@ -149,6 +154,7 @@ public class BYOPizzaActivity extends AppCompatActivity {
                 if(canAddTopping()){
                     onAddButtonClicked();
                     convertToppingToArrayList();
+                    updatePrice();
                 }
             }
         });
@@ -162,6 +168,7 @@ public class BYOPizzaActivity extends AppCompatActivity {
                 if (canRemoveTopping()){
                     onRemoveButtonClicked();
                     convertToppingToArrayList();
+                    updatePrice();
                 }
             }
         });
