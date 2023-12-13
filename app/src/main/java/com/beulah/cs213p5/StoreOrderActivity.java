@@ -24,7 +24,7 @@ public class StoreOrderActivity extends AppCompatActivity {
 
     private ArrayAdapter<String> pizzas;
     private ArrayList<String> pizzasAsStrings;
-    private Order selectedOrder;
+    private Order selectedOrder = null;
     private int orderIndex;
     private ArrayList<Order> orders;
     private ArrayList<Integer> orderNumsBackEnd;

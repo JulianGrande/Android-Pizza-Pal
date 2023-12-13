@@ -78,30 +78,6 @@ public class YourOrderActivity extends AppCompatActivity {
         });
     }
 
-//    private void addDialog(){
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setTitle("Add Order?");
-//        builder.setMessage("Are you sure you want to add this to the order?");
-//
-//        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-////                if(!pizzas.isEmpty()){
-//                    Toast.makeText(YourOrderActivity.this, "Triggered !isEmpty", Toast.LENGTH_SHORT).show();
-//                    cashier.addToStore();
-//                    finish();
-////                }
-//            }
-//        });
-//
-//        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                //leave blank
-//            }
-//        });
-//    }
-
     private void removeDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Remove Pizza?");
