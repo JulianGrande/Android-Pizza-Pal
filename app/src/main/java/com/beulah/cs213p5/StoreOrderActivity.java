@@ -102,16 +102,14 @@ public class StoreOrderActivity extends AppCompatActivity {
     }
 
     private void setOrderFields(){
-
         orderPrice.setText(String.format("%.2f", selectedOrder.getOrderTotal()));
-        for(int i = 0; i < selectedOrder.getPizzas().size(); i++){
+        pizzasAsStrings = new ArrayList<>();
+        for (int i = 0; i < selectedOrder.getPizzas().size(); i++) {
             pizzasAsStrings.add(selectedOrder.getPizzas().get(i).toString());
-
         }
         pizzas = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, pizzasAsStrings);
         itemList.setAdapter(pizzas);
         itemList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-
     }
 
 }
