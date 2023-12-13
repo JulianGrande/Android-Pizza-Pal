@@ -53,8 +53,15 @@ public class StoreOrderActivity extends AppCompatActivity {
         orderList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                orderIndex = orderNumsBackEnd.get(position);
-                selectedOrder = orders.get(orderIndex);
+//                orderIndex = orderNumsBackEnd.get(position);
+//                selectedOrder = orders.get(orderIndex);
+                int orderNum = ((Integer) parent.getItemAtPosition(position));
+                for(int j = 0; j < orders.size(); j++){
+                    if(orderNum == orders.get(j).getOrderNum()){
+                        selectedOrder = orders.get(j);
+                        break;
+                    }
+                }
                 setOrderFields();
             }
 
