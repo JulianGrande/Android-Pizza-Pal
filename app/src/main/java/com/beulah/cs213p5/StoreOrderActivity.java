@@ -67,10 +67,8 @@ public class StoreOrderActivity extends AppCompatActivity {
         cancelOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(StoreOrderActivity.this, "reached rem order builder", Toast.LENGTH_SHORT).show();
                 builder.setTitle("Remove Order?");
                 builder.setMessage("Are you sure you want to remove this order?");
-                
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
