@@ -127,14 +127,14 @@ public class SpecialtyExtraActivity extends AppCompatActivity {
         pizzaMaker = new PizzaMaker();
         pizzaPic = findViewById(R.id.specialtyExtraPic);
         toppings = findViewById(R.id.specialtyExtraLV);
-        title = findViewById(R.id.specialtyExtraTitle);
+        title = findViewById(R.id.specialtyExtraTitle); title.setKeyListener(null);
         extraSauceBox = findViewById(R.id.extraSauceBox);
         extraCheesebox = findViewById(R.id.extraCheeseBox);
         small = findViewById(R.id.specialtyExtraSmall);
         medium = findViewById(R.id.specialtyExtraMedium);
         large = findViewById(R.id.specialtyExtraLarge);
         addToOrder = findViewById(R.id.specialtyExtraATO);
-        price = findViewById(R.id.specialtyExtraPrice);
+        price = findViewById(R.id.specialtyExtraPrice); price.setKeyListener(null);
         sizeGroup = findViewById(R.id.sizeGroup);
     }
 

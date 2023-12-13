@@ -36,6 +36,13 @@ public class YourOrderActivity extends AppCompatActivity {
     private ArrayList<Pizza> pizzas;
     private static final double TAX_RATE = 0.06625;
 
+    /**
+     * Initializes all important fields and creates listeners that handle canceling an order or placing an order
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,13 +78,16 @@ public class YourOrderActivity extends AppCompatActivity {
         placeOrderYourOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(YourOrderActivity.this, "Listener triggered", Toast.LENGTH_SHORT).show();
+                Toast.makeText(YourOrderActivity.this, "Order has been placed!", Toast.LENGTH_SHORT).show();
                 cashier.addToStore();
                 finish();
             }
         });
     }
 
+    /**
+     * Helper method that creates a dialog alert for when user wants to cancel an order
+     */
     private void removeDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Remove Pizza?");
@@ -112,16 +122,22 @@ public class YourOrderActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    /**
+     * Helper method that matches ID's for needed variables
+     */
     private void setAllFields(){
         yourOrderList = findViewById(R.id.yourOrdersList);
-        subtotalYourOrder = findViewById(R.id.subtotalYourOrder);
-        taxesYourOrder = findViewById(R.id.taxesYourOrder);
-        totalYourOrder = findViewById(R.id.totalYourOrder);
+        subtotalYourOrder = findViewById(R.id.subtotalYourOrder); subtotalYourOrder.setKeyListener(null);
+        taxesYourOrder = findViewById(R.id.taxesYourOrder); taxesYourOrder.setKeyListener(null);
+        totalYourOrder = findViewById(R.id.totalYourOrder); totalYourOrder.setKeyListener(null);
         cancelOrderYourOrder = findViewById(R.id.cancelOrderYourOrder);
         placeOrderYourOrder = findViewById(R.id.placeOrderYourOrder);
-        yourOrderNum = findViewById(R.id.yourOrderNum);
+        yourOrderNum = findViewById(R.id.yourOrderNum); yourOrderNum.setKeyListener(null);
     }
 
+    /**
+     * Helper method that calculates price and tax information and updates necessary fields
+     */
     private void calculatePrices(){
 
         double sub = 0;

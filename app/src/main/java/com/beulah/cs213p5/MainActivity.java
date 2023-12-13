@@ -57,32 +57,50 @@ public class MainActivity extends AppCompatActivity {
         TextView mainSO = findViewById(R.id.mainStoreOrderText); mainSO.setKeyListener(null);
     }
 
+    /**
+     * Default onStart method
+     */
     @Override
     protected void onStart() {
         super.onStart();
     }
 
+    /**
+     * Default onResume method
+     */
     @Override
     protected void onResume() {
         super.onResume();
     }
 
+    /**
+     * Helper method for the specialty pizza image listener that redirects to the specialty recycler
+     */
     private void handleSpecialtyPizza(){
         Intent intent = new Intent(MainActivity.this, SpecialtyPizzaActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Helper method for the build your own pizza image listener that redirects to the byo activity
+     */
     private void handleBYOPizza(){
         Intent intent = new Intent(MainActivity.this, BYOPizzaActivity.class);
         startActivity(intent);
 
     }
 
+    /**
+     * Helper method for the your order pizza image listener that redirects to the your order activity
+     */
     private void handleYourOrder(){
         Intent intent = new Intent(MainActivity.this, YourOrderActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Helper method for the store order pizza image listener that redirects to the store order activity
+     */
     private void handleStoreOrders(){
         Intent intent = new Intent(MainActivity.this, StoreOrderActivity.class);
         startActivity(intent);
