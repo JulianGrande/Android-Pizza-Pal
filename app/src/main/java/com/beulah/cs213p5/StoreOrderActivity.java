@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -66,9 +67,10 @@ public class StoreOrderActivity extends AppCompatActivity {
         cancelOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(StoreOrderActivity.this, "reached rem order builder", Toast.LENGTH_SHORT).show();
                 builder.setTitle("Remove Order?");
                 builder.setMessage("Are you sure you want to remove this order?");
-
+                
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -79,12 +81,22 @@ public class StoreOrderActivity extends AppCompatActivity {
                                     orderNumsBackEnd.remove(i);
                                     orderListAdapter.notifyDataSetChanged();
                                     orderList.setAdapter(orderListAdapter);
+                                    pizzasAsStrings = new ArrayList<>();
+                                    pizzas = new ArrayAdapter<>(StoreOrderActivity.this, android.R.layout.simple_list_item_1, pizzasAsStrings);
+                                    itemList.setAdapter(pizzas);
+                                    break;
                                 }
                             }
                             orderPrice.setText("");
                         }
                     }
                 });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                builder.show();
             }
         });
     }
